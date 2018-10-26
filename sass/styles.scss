@@ -6,7 +6,6 @@ $text: 'Mali', cursive;
   font-size: 7vw;
 }
 
-
 body{
   margin: 0;
   padding: 0;
@@ -28,10 +27,6 @@ body{
   margin: auto;
   margin-top: 3vh;
   text-align: center;
-  .title{
-    @include title();
-    margin: 10px;
-  }
   .ask-name{
     font-family: $text; 
     p{
@@ -60,8 +55,34 @@ body{
     }
   }
 }
+.title{
+  @include title();
+  margin: 10px;
+}
 
-
+.board {
+  border: solid 10px black;
+  border-radius: 10px;
+  background-color: opacity($color: #f9e9e0);
+  .row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  .column {
+    flex: 30vw;
+    max-width: 25vw;
+    padding: 0 4px;
+    img {
+    max-width: 30vw;  
+    margin-top: 8px;
+    vertical-align: middle;
+    border: 1px solid #fd9727;
+    }
+  }
+  
+}
 
 
 
@@ -86,5 +107,10 @@ body{
       }
     }
   }
-  
+  .column {
+    -ms-flex: 20vw;
+    flex: 20vw;
+    max-width: 10vw;
+  }
+
 }

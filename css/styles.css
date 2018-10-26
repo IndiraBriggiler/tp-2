@@ -15,12 +15,6 @@ body {
   margin-top: 3vh;
   text-align: center;
 }
-.greeting .title {
-  font-family: "Pacifico", cursive;
-  color: #3fadd3;
-  font-size: 7vw;
-  margin: 10px;
-}
 .greeting .ask-name {
   font-family: "Mali", cursive;
 }
@@ -49,6 +43,36 @@ body {
   margin: 2px;
 }
 
+.title {
+  font-family: "Pacifico", cursive;
+  color: #3fadd3;
+  font-size: 7vw;
+  margin: 10px;
+}
+
+.board {
+  border: solid 10px black;
+  border-radius: 10px;
+  background-color: 1;
+}
+.board .row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.board .column {
+  flex: 30vw;
+  max-width: 25vw;
+  padding: 0 4px;
+}
+.board .column img {
+  max-width: 30vw;
+  margin-top: 8px;
+  vertical-align: middle;
+  border: 1px solid #fd9727;
+}
+
 @media (min-width: 800px) {
   .greeting {
     width: 25vw;
@@ -65,6 +89,12 @@ body {
   .greeting .difficulty .buttonDifficulty {
     width: 25vw;
     height: 5vh;
+  }
+
+  .column {
+    -ms-flex: 20vw;
+    flex: 20vw;
+    max-width: 10vw;
   }
 }
 
