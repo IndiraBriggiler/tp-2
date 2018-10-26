@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../images/fondo.jpg");
+}
+
+.greeting {
+  border: solid 10px black;
+  border-radius: 10px;
+  background-color: #f9e9e0;
+  width: 40vw;
+  padding: 5vw;
+  height: 65vh;
+  margin: auto;
+  margin-top: 3vh;
+  text-align: center;
+}
+.greeting .title {
+  font-family: "Pacifico", cursive;
+  color: #3fadd3;
+  font-size: 7vw;
+  margin: 10px;
+}
+.greeting .ask-name {
+  font-family: "Mali", cursive;
+}
+.greeting .ask-name p {
+  margin: 0;
+}
+.greeting .ask-name textarea {
+  resize: none;
+  width: 40vw;
+  margin-top: 10px;
+}
+.greeting .difficulty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Mali", cursive;
+}
+.greeting .difficulty .buttonDifficulty {
+  background-color: #fd9727;
+  color: white;
+  font-size: 2vh;
+  border: none;
+  border-radius: 5px;
+  width: 40vw;
+  height: 5vh;
+  margin: 2px;
+}
+
+@media (min-width: 800px) {
+  .greeting {
+    width: 25vw;
+    height: 55vh;
+    padding: 3vw;
+  }
+  .greeting .title {
+    margin: 10px;
+    font-size: 3vw;
+  }
+  .greeting .ask-name textarea {
+    width: 25vw;
+  }
+  .greeting .difficulty .buttonDifficulty {
+    width: 25vw;
+    height: 5vh;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

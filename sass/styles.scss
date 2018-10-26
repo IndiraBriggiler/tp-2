@@ -1,0 +1,90 @@
+$text: 'Mali', cursive;
+
+@mixin title {
+  font-family: 'Pacifico', cursive;
+  color: #3fadd3;
+  font-size: 7vw;
+}
+
+
+body{
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/fondo.jpg')
+}
+
+
+
+
+
+
+.greeting{
+  border: solid 10px black;
+  border-radius: 10px;
+  background-color: #f9e9e0;
+  width: 40vw;
+  padding: 5vw;
+  height: 65vh;
+  margin: auto;
+  margin-top: 3vh;
+  text-align: center;
+  .title{
+    @include title();
+    margin: 10px;
+  }
+  .ask-name{
+    font-family: $text; 
+    p{
+      margin: 0;
+    }
+    textarea{
+      resize: none;
+      width: 40vw;
+      margin-top: 10px;
+    }
+  }  
+  .difficulty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: $text;
+    .buttonDifficulty{
+      background-color: #fd9727;
+      color: white;
+      font-size: 2vh;
+      border: none;
+      border-radius: 5px;
+      width: 40vw;
+      height: 5vh;
+      margin: 2px;
+    }
+  }
+}
+
+
+
+
+
+@media (min-width: 800px) {
+  .greeting{
+    width: 25vw;
+    height: 55vh;
+    padding: 3vw;
+    .title{
+      margin: 10px;
+      font-size: 3vw;
+    }
+    .ask-name{
+      textarea{
+        width: 25vw;
+      }
+    }
+    .difficulty{
+      .buttonDifficulty{
+        width: 25vw;
+        height: 5vh;
+      }
+    }
+  }
+  
+}
