@@ -53,9 +53,23 @@ body {
 }
 
 .board {
+  margin: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   border: solid 10px black;
   border-radius: 10px;
-  background-color: 1;
+  background-color: rgba(249, 233, 224, 0.5);
+  filter: alpha(opacity=60);
+}
+.board .start-playing {
+  font-family: "Mali", cursive;
+  text-align: center;
+}
+.board .start-playing p {
+  margin: 0;
+  font-size: 10px;
 }
 .board .row {
   display: flex;
@@ -65,14 +79,21 @@ body {
 }
 .board .column {
   flex: 30vw;
-  max-width: 25vw;
   padding: 0 4px;
+  margin: 0vw 5vh;
 }
 .board .column img {
-  max-width: 30vw;
+  max-width: 20vw;
   margin-top: 8px;
   vertical-align: middle;
   border: 1px solid #fd9727;
+}
+.board .attempts {
+  border-radius: 10px;
+  border: solid 4px #3fadd3;
+  margin: 3vh;
+  width: 31vw;
+  text-align: center;
 }
 
 @media (min-width: 800px) {
@@ -93,13 +114,20 @@ body {
     height: 5vh;
   }
 
+  .board {
+    margin: 2vw 10vw 10vw 10vw;
+  }
+  .board .title {
+    font-size: 30px;
+  }
   .board .column {
+    margin: 0;
     -ms-flex: 20vw;
     flex: 20vw;
-    max-width: 10vw;
+    max-width: 7vw;
   }
   .board .column img {
-    max-width: 16vw;
+    max-width: 7vw;
   }
 }
 
