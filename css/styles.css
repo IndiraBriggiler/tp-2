@@ -47,7 +47,9 @@ body {
   font-family: "Pacifico", cursive;
   color: #3fadd3;
   font-size: 7vw;
+  text-align: center;
   margin: 10px;
+  text-align: center;
 }
 
 .board {
@@ -91,10 +93,13 @@ body {
     height: 5vh;
   }
 
-  .column {
+  .board .column {
     -ms-flex: 20vw;
     flex: 20vw;
     max-width: 10vw;
+  }
+  .board .column img {
+    max-width: 16vw;
   }
 }
 

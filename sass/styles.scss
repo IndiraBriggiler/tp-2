@@ -4,6 +4,7 @@ $text: 'Mali', cursive;
   font-family: 'Pacifico', cursive;
   color: #3fadd3;
   font-size: 7vw;
+  text-align: center;
 }
 
 body{
@@ -58,6 +59,7 @@ body{
 .title{
   @include title();
   margin: 10px;
+  text-align: center;
 }
 
 .board {
@@ -107,10 +109,15 @@ body{
       }
     }
   }
-  .column {
-    -ms-flex: 20vw;
-    flex: 20vw;
-    max-width: 10vw;
+  .board{
+    .column {
+      -ms-flex: 20vw;
+      flex: 20vw;
+      max-width: 10vw;
+      img {
+        max-width: 16vw; 
+      }
+    }
   }
-
+  
 }
