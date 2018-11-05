@@ -10,7 +10,7 @@ body {
   background-color: #f9e9e0;
   width: 40vw;
   padding: 5vw;
-  height: 65vh;
+  height: auto;
   margin: auto;
   margin-top: 3vh;
   text-align: center;
@@ -99,7 +99,7 @@ body {
 @media (min-width: 800px) {
   .greeting {
     width: 25vw;
-    height: 55vh;
+    height: auto;
     padding: 3vw;
   }
   .greeting .title {
@@ -129,6 +129,9 @@ body {
   .board .column img {
     max-width: 7vw;
   }
+}
+.hidden {
+  display: none;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -15,13 +15,13 @@
     <p class="title">Memotest</p>
     <div class="ask-name">
       <p>Hola &#x1F44B;! Vamos a jugar al Memotest</p> <p> Pero antes de empezar... </p> <p>Cual es tu nombre&#x2753</p>
-      <textarea name="nombre" id="" placeholder="Nombre"></textarea>
+      <textarea name="nombre" id="name" placeholder="Nombre"></textarea>
     </div>
     <div class="difficulty">
       <p>Con qué dificultad te gustaría jugar?</p>
-      <a href="#easy"><button class="buttonDifficulty">FÁCIL</button></a> 
-      <a href="#medium"><button class="buttonDifficulty">INTERMEDIO</button></a> 
-      <a href="#expert"><button class="buttonDifficulty">EXPERTO</button></a> 
+      <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL</button></a> 
+      <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO</button></a> 
+      <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO</button></a> 
     </div>
   </div>
 
@@ -52,36 +52,43 @@
 
 
 <!-- TABLERO -->
-
-<div class="board">
+<div class="board" id="board">
   <p class="title">Memotest</p>
+  <div class="start-playing">
+    <p id="helloName"></p> 
+    <p id="findAttempts"></p> 
+    <p>Nivel</p>
+    <p id="chooseLevel"> </p>
+  </div>
   <div class="row">
     <figure class="column">
-      <img class="board-image-alce" src="images/alce.jpg" alt="">
-      <img class="board-image-epelante" src="images/epelante.jpg" alt="">
-      <img class="board-image-nena" src="images/nena.jpg" alt="">
+      <img id="img1" class="images" src="" alt="">
+      <img id="img2" class="images" src="" alt="">
+      <img id="img3" class="images" src="" alt="">
     </figure>
     <figure class="column">
-      <img class="board-image-unichancho" src="images/unichancho.jpg" alt="">
-      <img class="board-image-zapas" src="images/zapas.jpg" alt="">
-      <img class="board-image-peces" src="images/peces.jpg" alt="">
+      <img id="img4" class="images" src="" alt="">
+      <img id="img5" class="images" src="" alt="">
+      <img id="img6" class="images" src="" alt="">
     </figure>
     <figure class="column">
-      <img class="board-image-alce" src="images/alce.jpg" alt="">
-      <img class="board-image-epelante" src="images/epelante.jpg" alt="">
-      <img class="board-image-nena" src="images/nena.jpg" alt="">
+      <img id="img7" class="images" src="" alt="">
+      <img id="img8" class="images" src="" alt="">
+      <img id="img9" class="images" src="" alt="">
     </figure>
     <figure class="column">
-      <img class="board-image-unichancho" src="images/unichancho.jpg" alt="">
-      <img class="board-image-zapas" src="images/zapas.jpg" alt="">
-      <img class="board-image-peces" src="images/peces.jpg" alt="">
+      <img id="img10" class="images" src="" alt="">
+      <img id="img11" class="images" src="" alt="">
+      <img id="img12" class="images" src="" alt="">
     </figure>
   </div>
-
+  <div class="attempts"> 
+    <p id="attempts"> </p>
+  </div>
 </div>
-
 <!-- TABLERO -->
-
-
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+  <script src="index.js"></script>
 </body>
 </html>
