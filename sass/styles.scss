@@ -14,9 +14,6 @@ body{
 }
 
 
-
-
-
 .greeting{
   border: solid 10px black;
   border-radius: 10px;
@@ -104,6 +101,10 @@ body{
     text-align: center;
   }
   
+}
+
+.hidden {
+  display: none;
 }
 
 
