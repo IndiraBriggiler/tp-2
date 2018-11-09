@@ -14,10 +14,13 @@ body{
 }
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 64071ae023e53bfa2b636c2aa5a808bf17051f09
 .greeting{
   border: solid 10px black;
   border-radius: 10px;
@@ -105,6 +108,10 @@ body{
     text-align: center;
   }
   
+}
+
+.hidden {
+  display: none;
 }
 
 

@@ -96,6 +96,10 @@ body {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (min-width: 800px) {
   .greeting {
     width: 25vw;
