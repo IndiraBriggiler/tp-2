@@ -14,13 +14,6 @@ body{
 }
 
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 64071ae023e53bfa2b636c2aa5a808bf17051f09
 .greeting{
   border: solid 10px black;
   border-radius: 10px;
@@ -57,6 +50,14 @@ body{
       height: 5vh;
       margin: 2px;
     }
+  }
+  .nameRequired {
+    background-color: lightsalmon;
+    color: tomato;
+    font-family: $text;
+    width: 40vw;
+    height: 5vh;
+    border-radius: 5px;
   }
 }
 .title{
