@@ -1,9 +1,4 @@
-// $('#board').addClass('hidden');
-
-
-
-
-
+$('#board').addClass('hidden');
 
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
@@ -16,20 +11,9 @@ $('.buttonDifficulty').on('click', function () {
   $('.images').attr('src', 'images/tapada.jpg');
   var attemptsNow = 0;
   $('#attempts').append('Intentos: Nº ' + attemptsNow)
+  $('#greeting').addClass('hidden');
+  $('#board').removeClass('hidden');
 })
-
-
-
-
-//VER QUE SOLO SE PUEDA HACER CLICK UNA SOLA VEZ
-// yo lo haria con un buleano
-//`isSelected` que estaria en false al principio
-//y que cuando clickeas en cualquier boton se ponga en true
-// y a los buttons les pondria disable si ese boolean esta en true
-
-
-
-
 
 $('#easy').on('click', function () {
   var level = 'FACIL';
@@ -57,23 +41,51 @@ function fillAttempts (attempts) {
   $('#findAttempts').append('Encontra todos los pares en menos de ' + attempts + ' intentos');
 }
 
-//CAPAZ ME CONVIENE PONER TODO EN UN OBJETO
-
-var boardGreeting = {
-  level: level,
-  attempts: attempts,
-  
-}
 
 
 
 // IMAGENES DEL BOARD
 
-// if (NO HAGO CLICK){
-//   $('.images').append()
+var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
+// var howManyClicks = 0;
+// var totalClicks = 0;
+// var piceOne = ;
+// var piceTwo = ;
+
+
+// $('.images').on('click', function () {
+//   howManyClicks++;
+//   if (howManyClicks === 2){
+//     for (i = 0; i < 11; i++) {
+//       if (piceOne.id !== piceTwo.id){
+//         totalClicks++
+//         return totalClicks
+//       }
+//     }
+//   } else if (howManyClicks === 1) {
+//     piceOne = 
+//   }
+// })
+
+// for (i = 0; i < images.length; i++) {
+
+
 // }
 
-//
+function flipImage () {
+  $("#card").flip({trigger: 'click'});
+}
 
 
+$(document).on('click', '.images', function () {
+  $(this).attr('src','images/alce.jpg');
+  flipImage();
+})
 
+
+// var positionsOcupped = [ ];
+
+// for (i = 0; i < 11; i++) {
+//   var randomPosition = Math.floor((Math.random() * 11) + 1);
+//   positionsOcupped.push(randomPosition);
+// }
