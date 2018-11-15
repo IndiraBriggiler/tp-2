@@ -2,17 +2,29 @@ $('#board').addClass('hidden');
 
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
-  isSelected = true;
-  if (isSelected === true){
-    $('.buttonDifficulty').prop('disabled', true);
-  }
   var name = $('#name').val();
-  $('#helloName').append('Hola ' + name);
-  $('.images').attr('src', 'images/tapada.jpg');
-  var attemptsNow = 0;
-  $('#attempts').append('Intentos: Nº ' + attemptsNow)
-  $('#greeting').addClass('hidden');
-  $('#board').removeClass('hidden');
+  console.log(name);
+  
+  if (name == '') {
+    $('#nameRequired').removeClass('hidden');
+    setTimeout(function() {
+      $('#nameRequired').addClass('hidden');
+    }, 2000)
+  } else {
+    isSelected = true;
+    if (isSelected === true){
+      $('.buttonDifficulty').prop('disabled', true);
+    }
+    
+    $('#helloName').append('Hola ' + name);
+    $('.images').attr('src', 'images/tapada.jpg');
+    var attemptsNow = 0;
+    $('#attempts').append('Intentos: Nº ' + attemptsNow)
+    $('#greeting').addClass('hidden');
+    $('#board').removeClass('hidden');
+  }
+  
+
 })
 
 $('#easy').on('click', function () {
@@ -46,7 +58,35 @@ function fillAttempts (attempts) {
 
 // IMAGENES DEL BOARD
 
-var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
+
+
+
+var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
+
+// images.sort( function(a, b) {
+//   Math.random() -0.5;
+// )}
+
+// var 
+
+
+
+var imagesLength = $(images).length
+
+for (i = 0; i < imagesLength; i++) {
+  $('.images').eq(i).attr('data-img', images[i]);
+}
+
+$(document).on('click', '.images', function () {
+  var visible = $(this).attr('data-img');
+  $(this).attr('src', visible);
+})
+
+
+
+
+
+
 // var howManyClicks = 0;
 // var totalClicks = 0;
 // var piceOne = ;
@@ -72,15 +112,25 @@ var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'imag
 
 // }
 
-function flipImage () {
-  $("#card").flip({trigger: 'click'});
-}
 
 
-$(document).on('click', '.images', function () {
-  $(this).attr('src','images/alce.jpg');
-  flipImage();
-})
+
+
+// function flipImage () {
+//   $("#card").flip({trigger: 'click'});
+// }
+
+
+// $(document).on('click', '.images', function () {
+//   $(this).attr('src','images/alce.jpg');
+//   flipImage();
+// })
+
+
+
+
+
+
 
 
 // var positionsOcupped = [ ];

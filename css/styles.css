@@ -42,6 +42,14 @@ body {
   height: 5vh;
   margin: 2px;
 }
+.greeting .nameRequired {
+  background-color: lightsalmon;
+  color: tomato;
+  font-family: "Mali", cursive;
+  width: 40vw;
+  height: 5vh;
+  border-radius: 5px;
+}
 
 .title {
   font-family: "Pacifico", cursive;
@@ -83,7 +91,7 @@ body {
   margin: 0vw 5vh;
 }
 .board .column img {
-  max-width: 20vw;
+  max-width: 19vw;
   margin-top: 8px;
   vertical-align: middle;
   border: 1px solid #fd9727;
