@@ -23,8 +23,6 @@ $('.buttonDifficulty').on('click', function () {
     $('#greeting').addClass('hidden');
     $('#board').removeClass('hidden');
   }
-  
-
 })
 
 $('#easy').on('click', function () {
@@ -60,8 +58,42 @@ function fillAttempts (attempts) {
 
 
 
-
 var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
+
+window.onload = function() {
+  images = shuffle(images);
+
+  var imagesLength = $(images).length
+  console.log("todas las img",$('.images'))
+ 
+  for (i = 0; i < imagesLength; i++) {
+     $('.images').eq(i).attr('data-img', images[i]);
+   }
+};
+
+function shuffle(images) {
+  var j
+  var x
+  var i
+  for (i = images.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = images[i];
+      images[i] = images[j];
+      images[j] = x;
+  }
+  return images;
+ }
+ 
+
+ console.log("todas las img",$('.images'))
+ 
+ $(document).on('click', '.images', function () {
+   var visible = $(this).attr('data-img');
+   $(this).attr('src', visible);
+ })
+
+
+
 
 // images.sort( function(a, b) {
 //   Math.random() -0.5;
@@ -71,16 +103,17 @@ var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'imag
 
 
 
-var imagesLength = $(images).length
+// var positionsOcupped = [ ];
 
-for (i = 0; i < imagesLength; i++) {
-  $('.images').eq(i).attr('data-img', images[i]);
-}
+// for (i = 0; i < 11; i++) {
+//   var randomPosition = Math.floor((Math.random() * 11) + 1);
+//   positionsOcupped.push(randomPosition);
+// }
 
-$(document).on('click', '.images', function () {
-  var visible = $(this).attr('data-img');
-  $(this).attr('src', visible);
-})
+
+
+
+
 
 
 
@@ -131,11 +164,3 @@ $(document).on('click', '.images', function () {
 
 
 
-
-
-// var positionsOcupped = [ ];
-
-// for (i = 0; i < 11; i++) {
-//   var randomPosition = Math.floor((Math.random() * 11) + 1);
-//   positionsOcupped.push(randomPosition);
-// }
