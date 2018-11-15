@@ -1,8 +1,5 @@
 $('#board').addClass('hidden');
 
-
-
-
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
   var name = $('#name').val();
@@ -119,8 +116,6 @@ $(document).on('click', '.images', function () {
 
 
 
-
-
 // function flipImage () {
 //   $("#card").flip({trigger: 'click'});
 // }
@@ -130,6 +125,8 @@ $(document).on('click', '.images', function () {
 //   $(this).attr('src','images/alce.jpg');
 //   flipImage();
 // })
+
+
 
 
 
