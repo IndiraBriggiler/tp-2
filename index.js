@@ -118,6 +118,8 @@ $('.images').on('click', function () {
         piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
       }, 700)
     } else {
+      piceOne = $(`#${piceOneId}`).addClass('backAndWithe')
+      piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe')
       equalPices++
       console.log( 'CANTIDAD DE PIEZAS IGUALES', equalPices)
     }
