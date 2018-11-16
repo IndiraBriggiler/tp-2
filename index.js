@@ -1,4 +1,5 @@
 $('#board').addClass('hidden');
+// $('#gameOver').addClass('hidden');
 
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
@@ -18,13 +19,11 @@ $('.buttonDifficulty').on('click', function () {
     
     $('#helloName').append('Hola ' + name);
     $('.images').attr('src', 'images/tapada.jpg');
-    var attemptsNow = 0;
-    $('#attempts').append('Intentos: Nº ' + attemptsNow)
+    $('#attempts').html('Intentos: Nº ' + totalClicks);
+    console.log(totalClicks);
     $('#greeting').addClass('hidden');
     $('#board').removeClass('hidden');
   }
-  
-
 })
 
 $('#easy').on('click', function () {
@@ -60,57 +59,97 @@ function fillAttempts (attempts) {
 
 
 
-
 var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
 
-// images.sort( function(a, b) {
-//   Math.random() -0.5;
-// )}
+window.onload = function() {
+  images = shuffle(images);
 
-// var 
+  var imagesLength = $(images).length
+  console.log("todas las img",$('.images'))
+ 
+  for (i = 0; i < imagesLength; i++) {
+     $('.images').eq(i).attr('data-img', images[i]);
+   }
+};
+
+function shuffle(images) {
+  var j
+  var x
+  var i
+  for (i = images.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = images[i];
+      images[i] = images[j];
+      images[j] = x;
+  }
+  return images;
+ }
+ 
+
+ console.log("todas las img",$('.images'))
+ 
+ $(document).on('click', '.images', function () {
+   var visible = $(this).attr('data-img');
+   $(this).attr('src', visible);
+ })
 
 
+var howManyClicks = 0;
+var totalClicks = 0;
+var piceOne;
+var piceOneId;
+var piceTwo;
+var piceTwoId;
+var equalPices = 0;
 
-var imagesLength = $(images).length
-
-for (i = 0; i < imagesLength; i++) {
-  $('.images').eq(i).attr('data-img', images[i]);
-}
-
-$(document).on('click', '.images', function () {
-  var visible = $(this).attr('data-img');
-  $(this).attr('src', visible);
+$('.images').on('click', function () {
+  howManyClicks++;
+  if (howManyClicks === 1) {
+    piceOne = $(this).attr('data-img');
+    piceOneId = $(this).attr('id');
+  } else {
+    piceTwo = $(this).attr('data-img');
+    piceTwoId = $(this).attr('id');
+    totalClicks++;
+    $('#attempts').html('Intentos: Nº ' + totalClicks);
+    if (piceOne !== piceTwo) {
+      setTimeout(function() {
+        piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
+        piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
+      }, 700)
+    } else {
+      equalPices++
+      console.log( 'CANTIDAD DE PIEZAS IGUALES', equalPices)
+    }
+    howManyClicks = 0;
+  }
+  game();
 })
 
 
 
 
+//INTENTOS 
+
+function game () {
+  if (equalPices === 6) {
+    $('#gameOver').removeClass('hidden');
+    $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`)
+  } else {
+    if (totalClicks === 18  && attempts === 18) {
+      $('.message').append('Perdiste! ');
+    } else if (totalClicks === 12 && attempts === 12) {
+      $('.message').append('Perdiste! ');
+    } else if (totalClicks === 9  && attempts === 9) {
+      $('.message').append('Perdiste! ');
+    }
+  }
+}
 
 
-// var howManyClicks = 0;
-// var totalClicks = 0;
-// var piceOne = ;
-// var piceTwo = ;
 
 
-// $('.images').on('click', function () {
-//   howManyClicks++;
-//   if (howManyClicks === 2){
-//     for (i = 0; i < 11; i++) {
-//       if (piceOne.id !== piceTwo.id){
-//         totalClicks++
-//         return totalClicks
-//       }
-//     }
-//   } else if (howManyClicks === 1) {
-//     piceOne = 
-//   }
-// })
 
-// for (i = 0; i < images.length; i++) {
-
-
-// }
 
 
 
@@ -122,7 +161,7 @@ $(document).on('click', '.images', function () {
 
 
 // $(document).on('click', '.images', function () {
-//   $(this).attr('src','images/alce.jpg');
+//   $(this).attr('src','images[i]');
 //   flipImage();
 // })
 
@@ -131,11 +170,3 @@ $(document).on('click', '.images', function () {
 
 
 
-
-
-// var positionsOcupped = [ ];
-
-// for (i = 0; i < 11; i++) {
-//   var randomPosition = Math.floor((Math.random() * 11) + 1);
-//   positionsOcupped.push(randomPosition);
-// }

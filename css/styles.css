@@ -32,7 +32,16 @@ body {
   justify-content: center;
   font-family: "Mali", cursive;
 }
-.greeting .difficulty .buttonDifficulty {
+.greeting .nameRequired {
+  background-color: lightsalmon;
+  color: tomato;
+  font-family: "Mali", cursive;
+  width: 40vw;
+  height: 5vh;
+  border-radius: 5px;
+}
+
+.buttonDifficulty {
   background-color: #fd9727;
   color: white;
   font-size: 2vh;
@@ -41,14 +50,6 @@ body {
   width: 40vw;
   height: 5vh;
   margin: 2px;
-}
-.greeting .nameRequired {
-  background-color: lightsalmon;
-  color: tomato;
-  font-family: "Mali", cursive;
-  width: 40vw;
-  height: 5vh;
-  border-radius: 5px;
 }
 
 .title {
@@ -106,6 +107,15 @@ body {
 
 .hidden {
   display: none;
+}
+
+.gameOver {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+}
+.gameOver .message {
+  opacity: none;
 }
 
 @media (min-width: 800px) {

@@ -40,16 +40,6 @@ body{
     flex-direction: column;
     justify-content: center;
     font-family: $text;
-    .buttonDifficulty{
-      background-color: #fd9727;
-      color: white;
-      font-size: 2vh;
-      border: none;
-      border-radius: 5px;
-      width: 40vw;
-      height: 5vh;
-      margin: 2px;
-    }
   }
   .nameRequired {
     background-color: lightsalmon;
@@ -60,6 +50,18 @@ body{
     border-radius: 5px;
   }
 }
+
+.buttonDifficulty{
+  background-color: #fd9727;
+  color: white;
+  font-size: 2vh;
+  border: none;
+  border-radius: 5px;
+  width: 40vw;
+  height: 5vh;
+  margin: 2px;
+}
+
 .title{
   @include title();
   margin: 10px;
@@ -115,7 +117,14 @@ body{
   display: none;
 }
 
-
+.gameOver {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  .message{
+    opacity: none;
+  }
+}
 
 @media (min-width: 800px) {
   .greeting{
