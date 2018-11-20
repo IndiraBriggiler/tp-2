@@ -10,9 +10,8 @@ $text: 'Mali', cursive;
 body{
   margin: 0;
   padding: 0;
-  background-image: url('../images/fondo.jpg')
+  background-image: url('../images/fondo.jpg');
 }
-
 
 .greeting{
   border: solid 10px black;
@@ -41,12 +40,15 @@ body{
     justify-content: center;
     font-family: $text;
   }
-  .nameRequired {
+  #nameRequired {
     background-color: lightsalmon;
     color: tomato;
-    font-family: $text;
-    width: 40vw;
-    height: 5vh;
+    font-family: "Mali", cursive;
+    padding: 1vw;
+    margin: auto;
+    margin-top: 3vh;
+    text-align: center;
+    font-size: 10px;
     border-radius: 5px;
   }
 }
@@ -83,7 +85,6 @@ body{
   border: solid 10px black;
   border-radius: 10px;
   background-color: rgba(249, 233, 224, 0.5);
-  filter: alpha(opacity=60);
   .start-playing { 
     font-family: $text; 
     text-align: center;
@@ -152,6 +153,8 @@ body{
   filter: grayscale(100%);
 }
 
+//DESKTOP
+
 @media (min-width: 800px) {
   .greeting{
     width: 25vw;
@@ -171,6 +174,9 @@ body{
         width: 25vw;
         height: 5vh;
       }
+    }
+    #nameRequired {
+      font-size: 15px;
     }
   }
   .board{
