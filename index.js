@@ -1,11 +1,9 @@
 $('#board').addClass('hidden');
-// $('#gameOver').addClass('hidden');
+$('#gameOver').addClass('hidden');
 
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
-  var name = $('#name').val();
-  console.log(name);
-  
+  var name = $('#name').val();  
   if (name == '') {
     $('#nameRequired').removeClass('hidden');
     setTimeout(function() {
@@ -19,8 +17,7 @@ $('.buttonDifficulty').on('click', function () {
     
     $('#helloName').append('Hola ' + name);
     $('.images').attr('src', 'images/tapada.jpg');
-    $('#attempts').html('Intentos: Nº ' + totalClicks);
-    console.log(totalClicks);
+    $('#attempts').html('Intentos: ' + totalClicks);
     $('#greeting').addClass('hidden');
     $('#board').removeClass('hidden');
   }
@@ -111,6 +108,7 @@ $('.images').on('click', function () {
     piceTwo = $(this).attr('data-img');
     piceTwoId = $(this).attr('id');
     totalClicks++;
+    console.log(totalClicks);
     $('#attempts').html('Intentos: Nº ' + totalClicks);
     if (piceOne !== piceTwo) {
       setTimeout(function() {
@@ -118,6 +116,8 @@ $('.images').on('click', function () {
         piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
       }, 700)
     } else {
+      piceOne = $(`#${piceOneId}`).addClass('backAndWithe')
+      piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe')
       equalPices++
       console.log( 'CANTIDAD DE PIEZAS IGUALES', equalPices)
     }
@@ -132,16 +132,23 @@ $('.images').on('click', function () {
 //INTENTOS 
 
 function game () {
-  if (equalPices === 6) {
+  console.log('perdio', equalPices);
+  if (equalPices < 6) {
+    console.log('perdioades', equalPices);
+    if (totalClicks == 18  && attempts == 18) {
+      $('.message').append('Perdiste! 😢');
+      onsole.log('perdio18', equalPices);
+    } else if (totalClicks == 12 && attempts == 12) {
+      $('.message').append('Perdiste! 😢');
+      onsole.log('perdio12', equalPices);
+    } else if (totalClicks == 9  && attempts == 9) {
+      $('.message').append('Perdiste! 😢');
+      onsole.log('perdio9', equalPices);
+    }
+  } else {
+    if (equalPices === 6) {
     $('#gameOver').removeClass('hidden');
     $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`)
-  } else {
-    if (totalClicks === 18  && attempts === 18) {
-      $('.message').append('Perdiste! ');
-    } else if (totalClicks === 12 && attempts === 12) {
-      $('.message').append('Perdiste! ');
-    } else if (totalClicks === 9  && attempts === 9) {
-      $('.message').append('Perdiste! ');
     }
   }
 }
@@ -170,3 +177,6 @@ function game () {
 
 
 
+//SCORE
+
+var score = [];
