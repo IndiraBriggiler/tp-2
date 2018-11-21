@@ -1,9 +1,21 @@
+var attempts = 0;
+var howManyClicks = 0;
+var totalClicks = 0;
+var piceOne;
+var piceOneId;
+var piceTwo;
+var piceTwoId;
+var equalPices = 0;
+var level;
+var name;
+var score;
+
 $('#board').addClass('hidden');
 $('#gameOver').addClass('hidden');
 
 isSelected = false;
 $('.buttonDifficulty').on('click', function () {
-  var name = $('#name').val();  
+  name = $('#name').val();  
   if (name == '') {
     $('#nameRequired').removeClass('hidden');
     setTimeout(function() {
@@ -24,46 +36,44 @@ $('.buttonDifficulty').on('click', function () {
 })
 
 $('#easy').on('click', function () {
-  var level = 'FACIL';
+  level = 'FACIL';
+  if (name !== "") {
   $('#chooseLevel').append(level);
-  var attempts = 18;
+  attempts = 18;
   fillAttempts(attempts);
+  }
 })
 
 $('#medium').on('click', function () {
-  var level = 'INTERMEDIO';
+  level = 'INTERMEDIO';
+  if (name !== "") {
   $('#chooseLevel').append(level);
-  var attempts = 12;
+  attempts = 12;
   fillAttempts(attempts);
+  }
 })
 
 $('#expert').on('click', function () {
-  var level = 'EXPERTO';
-  $('#chooseLevel').append(level);
-  var attempts = 9;
-  fillAttempts(attempts);
+  level = 'EXPERTO';
+  if (name !== "") {
+    $('#chooseLevel').append(level);
+    attempts = 9;
+    fillAttempts(attempts);
+  }
+ 
 })
-
 
 function fillAttempts (attempts) {
   $('#findAttempts').append('Encontra todos los pares en menos de ' + attempts + ' intentos');
 }
 
-
-
-
 // IMAGENES DEL BOARD
-
-
 
 var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
 
 window.onload = function() {
   images = shuffle(images);
-
-  var imagesLength = $(images).length
-  console.log("todas las img",$('.images'))
- 
+  var imagesLength = $(images).length;
   for (i = 0; i < imagesLength; i++) {
      $('.images').eq(i).attr('data-img', images[i]);
    }
@@ -80,24 +90,28 @@ function shuffle(images) {
       images[j] = x;
   }
   return images;
- }
- 
-
- console.log("todas las img",$('.images'))
- 
- $(document).on('click', '.images', function () {
+}
+  
+$(document).on('click', '.images', function () {
    var visible = $(this).attr('data-img');
-   $(this).attr('src', visible);
- })
+  $(this).attr('src', visible);
+
+  // $(this).id().flip({trigger: 'click'});
+
+})
 
 
-var howManyClicks = 0;
-var totalClicks = 0;
-var piceOne;
-var piceOneId;
-var piceTwo;
-var piceTwoId;
-var equalPices = 0;
+// IMAGEN FLIP 
+
+
+// }
+// $(document).on('click', '.images', function () {
+//   $(this).attr('src','images[i]');
+//   flipImage();
+// })
+
+
+//SELECCCIONAR FICHAS IGUALES O NO
 
 $('.images').on('click', function () {
   howManyClicks++;
@@ -105,78 +119,117 @@ $('.images').on('click', function () {
     piceOne = $(this).attr('data-img');
     piceOneId = $(this).attr('id');
   } else {
-    piceTwo = $(this).attr('data-img');
-    piceTwoId = $(this).attr('id');
-    totalClicks++;
-    console.log(totalClicks);
-    $('#attempts').html('Intentos: Nº ' + totalClicks);
-    if (piceOne !== piceTwo) {
-      setTimeout(function() {
-        piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
-        piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
-      }, 700)
-    } else {
-      piceOne = $(`#${piceOneId}`).addClass('backAndWithe')
-      piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe')
-      equalPices++
-      console.log( 'CANTIDAD DE PIEZAS IGUALES', equalPices)
+    if (piceOneId !== $(this).attr('id')) {
+      piceTwo = $(this).attr('data-img');
+      piceTwoId = $(this).attr('id');
+      totalClicks++;
+      $('#attempts').html('Intentos: Nº ' + totalClicks);
+      if (piceOne !== piceTwo) {
+        setTimeout(function() {
+          piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
+          piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
+        }, 500)
+      } else {
+        if (piceOneId !== piceTwoId) {
+          piceOne = $(`#${piceOneId}`).addClass('backAndWithe')
+          piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe')
+          equalPices++
+        }
+      }
+      howManyClicks = 0;
     }
-    howManyClicks = 0;
   }
   game();
 })
 
 
+//SCORE
 
 
-//INTENTOS 
+
+
+
+//PERDER O GANAR
 
 function game () {
-  console.log('perdio', equalPices);
   if (equalPices < 6) {
-    console.log('perdioades', equalPices);
     if (totalClicks == 18  && attempts == 18) {
-      $('.message').append('Perdiste! 😢');
-      onsole.log('perdio18', equalPices);
+      $('.message').append('Perdiste! 😢');1
+      $('#gameOver').removeClass('hidden');
+      $('.buttonDifficulty').prop('disabled', false);
     } else if (totalClicks == 12 && attempts == 12) {
-      $('.message').append('Perdiste! 😢');
-      onsole.log('perdio12', equalPices);
+      $('#gameOver').removeClass('hidden');
+      $('.message').append('Perdiste! 😢');  
+     $('.buttonDifficulty').prop('disabled', false); 
     } else if (totalClicks == 9  && attempts == 9) {
+      $('#gameOver').removeClass('hidden');
       $('.message').append('Perdiste! 😢');
-      onsole.log('perdio9', equalPices);
+      $('.buttonDifficulty').prop('disabled', false);
     }
   } else {
     if (equalPices === 6) {
     $('#gameOver').removeClass('hidden');
-    $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`)
+    $('.buttonDifficulty').prop('disabled', false);
+    $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
+
+    if (localStorage.getItem('ranking') == null) {
+      score = [];
+    } else {
+      score = localStorage.getItem('ranking');
+    }
+
+    var ranking = {
+      rankingName : name,
+      rankingLevel : level,
+      rankingAttempts : attempts
+    }
+
+    score.push(ranking);
+    localStorage.setItem('ranking', JSON.stringify(score));
+
+    var ranking = localStorage.getItem(ranking);
+    if (ranking !== null) {
+      ranking = JSON.parse(ranking);
+      for (i = 0; i < ranking.length; i++) {
+        $('#rankingName').append(ranking[i].rankingName);
+        $('#rankingLevel').append(ranking[i].rankingLevel);
+        $('#rankingAttempts').append(ranking[i].rankingAttempts);
+      }
+    }
+
     }
   }
+
+  // var ranking = localStorage.getItem(ranking);
+  // if (ranking !== null) {
+  //   ranking = JSON.parse(ranking);
+  //   for (i = 0; i < ranking.length; i++) {
+  //     $('#rankingName').append(ranking[i].rankingName);
+  //     $('#rankingLevel').append(ranking[i].rankingLevel);
+  //     $('#rankingAttempts').append(ranking[i].rankingAttempts);
+  //   }
+  // }
+  
+
 }
 
 
+//VOLVER A JUGAR
+
+$('#btnPlayAgain').on('click', function () {
+  console.log('hola')
+  attempts = 0;
+  howManyClicks = 0;
+  totalClicks = 0;
+  piceOne = "";
+  piceOneId = "";
+  piceTwo = "";
+  piceTwoId = "";
+  equalPices = 0;
+  name = $('#name').val("");
+  $('#board').addClass('hidden');
+  $('#gameOver').addClass('hidden');
+  $('#greeting').removeClass('hidden');
+})
 
 
-
-
-
-
-
-
-// function flipImage () {
-//   $("#card").flip({trigger: 'click'});
-// }
-
-
-// $(document).on('click', '.images', function () {
-//   $(this).attr('src','images[i]');
-//   flipImage();
-// })
-
-
-
-
-
-
-//SCORE
-
-var score = [];

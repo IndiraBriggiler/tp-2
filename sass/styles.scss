@@ -134,17 +134,38 @@ body{
   justify-content: center;
   position: absolute;
   align-items: center;
+  font-family: $text;
   .messageBox {
     border: 2px solid black;
     border-radius: 5px;
     width: 25vw;
-    height: 50vh;
+    height: 45vh;
     background-color: #f9e9e0;
     top: -3%;
     position: absolute;
   }
   .playAgain {
     width: 12vw;
+  }
+  #ranking {
+    display: flex;
+    margin-top: 2vh;
+    border: 1px solid black;
+    width: 22vw;
+    margin: 2vh auto;
+    font-size: 10px;
+    #rankingName {
+      border: 1px solid black;
+      width: 33%;
+    }
+    #rankingLevel {
+      border: 1px solid black;
+      width: 33%;
+    }
+    #rankingAttempts {
+      border: 1px solid black;
+      width: 33%;
+    }
   }
 }
 
