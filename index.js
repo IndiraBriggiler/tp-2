@@ -93,23 +93,40 @@ function shuffle(images) {
 }
   
 $(document).on('click', '.images', function () {
-   var visible = $(this).attr('data-img');
+  var visible = $(this).attr('data-img');
   $(this).attr('src', visible);
+  var imagesId = $(this).attr('id');
+  console.log(imagesId)
 
-  // $(this).id().flip({trigger: 'click'});
+  $('#' + imagesId).flip(); 
 
 })
+
+  
+
 
 
 // IMAGEN FLIP 
 
+
+
+// $('#img1').flipIt({
+//   trigger: 'click'
+// })  
+
+
+
+// function flip() {
+//   $('#' + imagesId).toggleClass('flipped');
+// }
+  // $('#img1').flip();
 
 // }
 // $(document).on('click', '.images', function () {
 //   $(this).attr('src','images[i]');
 //   flipImage();
 // })
-
+ 
 
 //SELECCCIONAR FICHAS IGUALES O NO
 
@@ -172,22 +189,35 @@ function game () {
     $('.buttonDifficulty').prop('disabled', false);
     $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
 
+    
+    var rankingObj = {
+      rankingName : name,
+      rankingLevel : level,
+      rankingAttempts : totalClicks
+    }  
+
     if (localStorage.getItem('ranking') == null) {
-      score = [];
+      score = []; 
     } else {
       score = localStorage.getItem('ranking');
     }
 
-    var ranking = {
-      rankingName : name,
-      rankingLevel : level,
-      rankingAttempts : attempts
-    }
+    console.log(score)
 
-    score.push(ranking);
+    // var rankingObj = {
+    //   rankingName : name,
+    //   rankingLevel : level,
+    //   rankingAttempts : totalClicks
+    // } --------> LO LLEVE PARA ARRIBA
+
+    console.log(rankingObj)
+    
+    score.push(rankingObj);
+
     localStorage.setItem('ranking', JSON.stringify(score));
 
     var ranking = localStorage.getItem(ranking);
+    
     if (ranking !== null) {
       ranking = JSON.parse(ranking);
       for (i = 0; i < ranking.length; i++) {
