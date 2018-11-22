@@ -10,10 +10,45 @@ var level;
 var name;
 var score;
 
+
+
+//VOLVER A JUGAR
+
+$('#btnPlayAgain').on('click', function () {
+  attempts = 0;
+  howManyClicks = 0;
+  totalClicks = 0;
+  piceOne = "";
+  piceOneId = "";
+  piceTwo = "";
+  piceTwoId = "";
+  equalPices = 0;
+  name = $('#name').val("");
+
+  // console.log(attempts, howManyClicks, totalClicks, piceOne, piceOneId, piceTwo, piceTwoId, equalPices)
+
+  $('#board').addClass('hidden');
+  $('#gameOver').addClass('hidden');
+  $('#greeting').removeClass('hidden');
+  
+  $('.buttonDifficulty').prop('disabled', false);
+  
+  $(`#${piceOneId}`).removeClass('backAndWithe');
+  $(`#${piceTwoId}`).removeClass('backAndWithe');
+
+  isSelected = false;
+
+  reset();
+})
+
+
+// TABLERO AL INICIO
+
 $('#board').addClass('hidden');
 $('#gameOver').addClass('hidden');
 
-isSelected = false;
+
+var isSelected = false;
 $('.buttonDifficulty').on('click', function () {
   name = $('#name').val();  
   if (name == '') {
@@ -72,11 +107,7 @@ function fillAttempts (attempts) {
 var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
 
 window.onload = function() {
-  images = shuffle(images);
-  var imagesLength = $(images).length;
-  for (i = 0; i < imagesLength; i++) {
-     $('.images').eq(i).attr('data-img', images[i]);
-   }
+  reset();
 };
 
 function shuffle(images) {
@@ -91,12 +122,27 @@ function shuffle(images) {
   }
   return images;
 }
+
+
+
+function reset () {
+  images = shuffle(images);
+  var imagesLength = $(images).length;
+  for (i = 0; i < imagesLength; i++) {
+     $('.images').eq(i).attr('data-img', images[i]);
+   }
+
+
+// }
+
+
+
   
 $(document).on('click', '.images', function () {
    var visible = $(this).attr('data-img');
   $(this).attr('src', visible);
-
-  // $(this).id().flip({trigger: 'click'});
+  // var imagesId = $(this).attr('id');
+  // $('#' + imagesId).flip({trigger: 'click'});
 
 })
 
@@ -131,8 +177,12 @@ $('.images').on('click', function () {
         }, 500)
       } else {
         if (piceOneId !== piceTwoId) {
-          piceOne = $(`#${piceOneId}`).addClass('backAndWithe')
-          piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe')
+          piceOne = $(`#${piceOneId}`).addClass('backAndWithe');
+          piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
+          $('#' + piceOneId).off('click');
+          $('#' + piceTwoId).off('click');
+          
+
           equalPices++
         }
       }
@@ -142,7 +192,7 @@ $('.images').on('click', function () {
   game();
 })
 
-
+}
 //SCORE
 
 
@@ -175,61 +225,36 @@ function game () {
     if (localStorage.getItem('ranking') == null) {
       score = [];
     } else {
-      score = localStorage.getItem('ranking');
+      score = JSON.parse(localStorage.getItem('ranking'));
     }
 
     var ranking = {
       rankingName : name,
       rankingLevel : level,
-      rankingAttempts : attempts
+      rankingAttempts : totalClicks
     }
 
-    score.push(ranking);
+    score.push(ranking)
+    
     localStorage.setItem('ranking', JSON.stringify(score));
 
-    var ranking = localStorage.getItem(ranking);
+    var ranking = localStorage.getItem('ranking');
+    ranking = JSON.parse(ranking);
+
+
+
     if (ranking !== null) {
-      ranking = JSON.parse(ranking);
       for (i = 0; i < ranking.length; i++) {
-        $('#rankingName').append(ranking[i].rankingName);
-        $('#rankingLevel').append(ranking[i].rankingLevel);
-        $('#rankingAttempts').append(ranking[i].rankingAttempts);
+        $('#rankingName').append('<p>' + ranking[i].rankingName + '</p>');
+        $('#rankingLevel').append('<p>' + ranking[i].rankingLevel + '</p>');
+        $('#rankingAttempts').append('<p>' + ranking[i].rankingAttempts + '</p>');
       }
     }
 
     }
   }
 
-  // var ranking = localStorage.getItem(ranking);
-  // if (ranking !== null) {
-  //   ranking = JSON.parse(ranking);
-  //   for (i = 0; i < ranking.length; i++) {
-  //     $('#rankingName').append(ranking[i].rankingName);
-  //     $('#rankingLevel').append(ranking[i].rankingLevel);
-  //     $('#rankingAttempts').append(ranking[i].rankingAttempts);
-  //   }
-  // }
-  
-
 }
 
-
-//VOLVER A JUGAR
-
-$('#btnPlayAgain').on('click', function () {
-  console.log('hola')
-  attempts = 0;
-  howManyClicks = 0;
-  totalClicks = 0;
-  piceOne = "";
-  piceOneId = "";
-  piceTwo = "";
-  piceTwoId = "";
-  equalPices = 0;
-  name = $('#name').val("");
-  $('#board').addClass('hidden');
-  $('#gameOver').addClass('hidden');
-  $('#greeting').removeClass('hidden');
-})
 
 
