@@ -139,23 +139,38 @@ function reset () {
 
   
 $(document).on('click', '.images', function () {
-   var visible = $(this).attr('data-img');
+  var visible = $(this).attr('data-img');
   $(this).attr('src', visible);
   // var imagesId = $(this).attr('id');
   // $('#' + imagesId).flip({trigger: 'click'});
 
 })
 
+  
+
+
 
 // IMAGEN FLIP 
 
+
+
+// $('#img1').flipIt({
+//   trigger: 'click'
+// })  
+
+
+
+// function flip() {
+//   $('#' + imagesId).toggleClass('flipped');
+// }
+  // $('#img1').flip();
 
 // }
 // $(document).on('click', '.images', function () {
 //   $(this).attr('src','images[i]');
 //   flipImage();
 // })
-
+ 
 
 //SELECCCIONAR FICHAS IGUALES O NO
 
@@ -222,8 +237,15 @@ function game () {
     $('.buttonDifficulty').prop('disabled', false);
     $('.message').append(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
 
+    
+    var rankingObj = {
+      rankingName : name,
+      rankingLevel : level,
+      rankingAttempts : totalClicks
+    }  
+
     if (localStorage.getItem('ranking') == null) {
-      score = [];
+      score = []; 
     } else {
       score = JSON.parse(localStorage.getItem('ranking'));
     }
