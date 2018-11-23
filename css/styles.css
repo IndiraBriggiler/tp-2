@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("../images/fondo.jpg");
+  position: relative;
 }
 
 .greeting {
@@ -70,7 +71,6 @@ body {
 }
 
 .board {
-  position: relative;
   margin: 5vw;
   display: flex;
   flex-direction: column;
@@ -121,42 +121,49 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(249, 233, 224, 0.5);
-  filter: alpha(opacity=60);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: absolute;
+  top: -4%;
   align-items: center;
   font-family: "Mali", cursive;
+  padding: 1vh;
 }
 .gameOver .messageBox {
   border: 2px solid black;
   border-radius: 5px;
-  width: 25vw;
+  width: 65vw;
   background-color: #f9e9e0;
-  top: -3%;
-  position: absolute;
+  text-align: center;
 }
 .gameOver .playAgain {
-  width: 14vw;
+  background-color: #fd9727;
+  color: white;
+  font-size: 2vh;
+  border: none;
+  border-radius: 5px;
+  width: 40vw;
+  height: 5vh;
+  margin: 2px;
 }
 .gameOver #ranking {
-  display: flex;
-  border: 1px solid black;
+  border: 2px solid black;
   width: 22vw;
   margin: 5vh auto;
   font-size: 10px;
 }
-.gameOver #ranking #rankingName {
-  border: 1px solid black;
+.gameOver #ranking .row {
+  display: flex;
+}
+.gameOver #ranking .row #rankingName {
   width: 33%;
 }
-.gameOver #ranking #rankingLevel {
-  border: 1px solid black;
+.gameOver #ranking .row #rankingLevel {
+  border-right: 2px solid black;
+  border-left: 2px solid black;
   width: 33%;
 }
-.gameOver #ranking #rankingAttempts {
-  border: 1px solid black;
+.gameOver #ranking .row #rankingAttempts {
   width: 33%;
 }
 
@@ -164,6 +171,14 @@ body {
   -webkit-filter: grayscale(100%);
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
+}
+
+.hidden {
+  display: none;
+}
+
+.flip {
+  transform-origin: center right;
 }
 
 @media (min-width: 800px) {
@@ -202,9 +217,17 @@ body {
   .board .column img {
     max-width: 7vw;
   }
-}
-.hidden {
-  display: none;
+
+  .gameOver .messageBox {
+    width: 30vw;
+  }
+  .gameOver .playAgain {
+    width: 25vw;
+  }
+  .gameOver #ranking {
+    width: 25vw;
+    margin: 5vh auto;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
