@@ -7,10 +7,22 @@ $text: 'Mali', cursive;
   text-align: center;
 }
 
+@mixin btnStyles {
+  background-color: #fd9727;
+  color: white;
+  font-size: 2vh;
+  border: none;
+  border-radius: 5px;
+  width: 40vw;
+  height: 5vh;
+  margin: 2px;
+}
+
 body{
   margin: 0;
   padding: 0;
   background-image: url('../images/fondo.jpg');
+  position: relative;
 }
 
 .greeting{
@@ -54,14 +66,7 @@ body{
 }
 
 .buttonDifficulty{
-  background-color: #fd9727;
-  color: white;
-  font-size: 2vh;
-  border: none;
-  border-radius: 5px;
-  width: 40vw;
-  height: 5vh;
-  margin: 2px;
+  @include btnStyles();
 }
 
 .buttonDifficulty:hover {
@@ -76,7 +81,6 @@ body{
 }
 
 .board {
-  position: relative;
   margin: 5vw;
   display: flex;
   flex-direction: column;
@@ -128,41 +132,42 @@ body{
   width: 100vw;
   height: 100vh;
   background-color: rgba(249, 233, 224, 0.5);
-  filter: alpha(opacity=60);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: absolute;
+  top: -4%;
   align-items: center;
   font-family: $text;
+  padding: 1vh;
   .messageBox {
     border: 2px solid black;
     border-radius: 5px;
-    width: 25vw;
+    width: 65vw;
     background-color: #f9e9e0;
-    top: -3%;
-    position: absolute;
+    text-align: center;
   }
   .playAgain {
-    width: 14vw;
+    @include btnStyles();
+    // width: 14vw;
   }
   #ranking {
-    display: flex;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 22vw;
     margin: 5vh auto;
     font-size: 10px;
-    #rankingName {
-      border: 1px solid black;
-      width: 33%;
-    }
-    #rankingLevel {
-      border: 1px solid black;
-      width: 33%;
-    }
-    #rankingAttempts {
-      border: 1px solid black;
-      width: 33%;
+    .row {
+      display: flex;
+      #rankingName {
+        width: 33%;
+      }
+      #rankingLevel {
+        border-right: 2px solid black;
+        border-left: 2px solid black;
+        width: 33%;
+      }
+      #rankingAttempts {
+        width: 33%;
+      }
     }
   }
 }
@@ -171,6 +176,15 @@ body{
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
+
+.hidden {
+  display: none;
+}
+
+.flip {
+  transform-origin: center right;
+}
+
 
 //DESKTOP
 
@@ -213,10 +227,20 @@ body{
       }
     }
   }
-  
+  .gameOver {
+    .messageBox {
+      width: 30vw;
+    }
+    .playAgain {
+      width: 25vw;
+    }
+    #ranking {
+      width: 25vw;
+      margin: 5vh auto;
+    }
+  }
 }
 
-.hidden {
-  display: none;
-}
+
+
 
