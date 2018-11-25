@@ -5,95 +5,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Mali|Pacifico" rel="stylesheet">  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Mali|Pacifico" rel="stylesheet">  
+  <link rel="stylesheet" href="css/styles.css">
   <title>MEMOTEST</title>
 </head>
 <body>
   
 <!-- SALUDO INICIAL -->
 
-<div class="greeting" id="greeting">
-  <p class="title">Memotest</p>
-  <div class="ask-name">
-    <p>Hola &#x1F44B;! Vamos a jugar al Memotest</p> <p> Pero antes de empezar... </p> <p>Cual es tu nombre&#x2753</p>
-    <textarea name="nombre" id="name" placeholder="Nombre"></textarea>
+  <div class="greeting" id="greeting">
+    <p class="title">Memotest</p>
+    <div class="ask-name">
+      <p>Hola &#x1F44B;! Vamos a jugar al Memotest</p> <p> Pero antes de empezar... </p> <p>Cual es tu nombre&#x2753</p>
+      <textarea name="nombre" id="name" placeholder="Nombre"></textarea>
+    </div>
+    <div class="difficulty">
+      <p>Con qué dificultad te gustaría jugar?</p>
+      <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL</button></a> 
+      <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO</button></a> 
+      <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO</button></a> 
+    </div>
+    <div class="hidden" id="nameRequired">
+      <span>UPSS... El nombre es requerido</span>
+    </div>
   </div>
-  <div class="difficulty">
-    <p>Con qué dificultad te gustaría jugar?</p>
-    <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL</button></a> 
-    <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO</button></a> 
-    <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO</button></a> 
-  </div>
-  <div class="hidden" id="nameRequired">
-    <span>UPSS... El nombre es requerido</span>
-  </div>
-</div>
 
 <!-- SALUDO INICIAL HASTA ACA-->
 
 
 <!-- TABLERO -->
-<div class="board" id="board">
-  <p class="title">Memotest</p>
-  <div class="start-playing">
-    <p id="helloName"></p> 
-    <p id="findAttempts"></p> 
-    <p>Nivel</p>
-    <p id="chooseLevel"> </p>
+  <div class="board" id="board">
+    <p class="title">Memotest</p>
+    <div class="start-playing">
+      <p id="helloName"></p> 
+      <p id="findAttempts"></p> 
+      <p>Nivel</p>
+      <p id="chooseLevel"> </p>
+    </div>
+    <div class="mainContainer">
+      <div class="imagesContainer">
+        <figure class="oneImageContainer">
+            <img id="img1" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img2" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img3" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img4" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img5" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img6" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img7" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img8" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img9" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img10" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img11" class="images" src="" data-img="" alt="">
+        </figure>
+        <figure class="oneImageContainer">
+            <img id="img12" class="images" src="" data-img="" alt="">
+        </figure>
+      </div>
+    </div>
+    <div class="attempts"> 
+      <p id="attempts"> </p>
+    </div>
   </div>
-  <div class="row">
-    <figure class="column">
-      <img id="img1" class="images front" src="" data-img="" alt="">
-      <img id="img2" class="images" src="" alt="" data-img="">
-      <img id="img3" class="images" src="" alt="" data-img="">
-    </figure>
-    <figure class="column">
-      <img id="img4" class="images" src="" alt="" data-img="">
-      <img id="img5" class="images" src="" alt="" data-img="">
-      <img id="img6" class="images" src="" alt="" data-img="">
-    </figure>
-    <figure class="column">
-      <img id="img7" class="images" src="" alt="" data-img="">
-      <img id="img8" class="images" src="" alt="" data-img="">
-      <img id="img9" class="images" src="" alt="" data-img="">
-    </figure>
-    <figure class="column">
-      <img id="img10" class="images" src="" alt="" data-img="">
-      <img id="img11" class="images" src="" alt="" data-img="">
-      <img id="img12" class="images" src="" alt="" data-img="">
-    </figure>
-  </div>
-  <div class="attempts"> 
-    <p id="attempts"> </p>
-  </div>
-</div>
 <!-- TABLERO HASTA ACA -->
 
 
 
 <!-- GAME OVER -->
 
-<div id="gameOver" class="gameOver">
-  <div class="messageBox">
-    <p class="message"></p>
-    <p>Ya podes volver a jugar</p>
-    <button class="playAgain" id="btnPlayAgain">VOLVER A JUGAR</button>
-      <div id="ranking">
-        <div class="row">
-            <div id="rankingName">
-                <p>NOMBRE</p>
-              </div>  
-              <div id="rankingLevel">
-                <p>NIVEL</p>
-              </div>
-              <div id="rankingAttempts">
-                <p>INTENTOS</p>
-              </div>
+  <div id="gameOver" class="gameOver">
+    <div class="messageBox">
+      <p class="message"></p>
+      <p>Ya podes volver a jugar</p>
+      <button class="playAgain" id="btnPlayAgain">VOLVER A JUGAR</button>
+        <div id="ranking">
+          <div class="row">
+              <div id="rankingName">
+                  <p>NOMBRE</p>
+                </div>  
+                <div id="rankingLevel">
+                  <p>NIVEL</p>
+                </div>
+                <div id="rankingAttempts">
+                  <p>INTENTOS</p>
+                </div>
+          </div>
+          
         </div>
-        
-      </div>
-  </div> 
-</div>
+    </div> 
+  </div>
 
 
 <!-- GAME OVER HASTA ACA -->
