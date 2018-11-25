@@ -136,6 +136,10 @@ body{
   }  
 }
 
+.oneImageContainer:hover{
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
@@ -151,7 +155,7 @@ body{
   top: -4%;
   align-items: center;
   font-family: $text;
-  padding: 1vh;
+  padding: 1vh 0vw;
   .messageBox {
     border: 2px solid black;
     border-radius: 5px;
@@ -165,7 +169,7 @@ body{
   }
   #ranking {
     border: 2px solid black;
-    width: 22vw;
+    width: 50vw;
     margin: 5vh auto;
     font-size: 10px;
     .row {
@@ -197,7 +201,7 @@ body{
 .flip {
   transition: all 1s ease-in-out;
   transform-style: preserve-3d;
-  transform: rotateY(180deg);
+  transform: rotateY(720deg);
 }
 
 
@@ -244,8 +248,8 @@ body{
         grid-row-gap: 0.8vh;
         grid-column-gap: 1.3vh;
         .oneImageContainer {
-          width: 7vw;
-          height: 15.4vh;
+          width: 95%;
+          height: 95%;
           margin: 0;
         }
       }
@@ -261,12 +265,13 @@ body{
   .gameOver {
     .messageBox {
       width: 30vw;
+      margin: 1.5vh;
     }
     .playAgain {
       width: 25vw;
     }
     #ranking {
-      width: 25vw;
+      width: 22vw;
       margin: 5vh auto;
     }
   }

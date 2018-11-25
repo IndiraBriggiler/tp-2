@@ -26,10 +26,6 @@ $('#btnPlayAgain').on('click', function () {
 
   name = $('#name').val("");
   
-
-
-  // console.log(attempts, howManyClicks, totalClicks, piceOne, piceOneId, piceTwo, piceTwoId, equalPices)
-
   $('#board').addClass('hidden');
   $('#gameOver').addClass('hidden');
   $('#greeting').removeClass('hidden');
@@ -41,6 +37,8 @@ $('#btnPlayAgain').on('click', function () {
   isSelected = false;
 
   reset();
+
+  play ();
 })
 
 
@@ -138,134 +136,138 @@ function reset () {
 }
 
   
-$(document).on('click', '.images', function () {
-  var visible = $(this).attr('data-img');
-  $(this).attr('src', visible);
-})
+// $(document).on('click', '.images', function () {
+//   var visible = $(this).attr('data-img');
+//   $(this).attr('src', visible);
+// })
 
 
- 
 
 //SELECCCIONAR FICHAS IGUALES O NO
 
-$('.images').on('click', function () {
-  $('this').addClass('flip');
-  howManyClicks++;
-  if (howManyClicks === 1) {
-    piceOne = $(this).attr('data-img');
-    piceOneId = $(this).attr('id');
-  } else {
-    if (piceOneId !== $(this).attr('id')) {
-      piceTwo = $(this).attr('data-img');
-      piceTwoId = $(this).attr('id');
-      totalClicks++;
-      $('#attempts').html('Intentos: Nº ' + totalClicks);
-      if (piceOne !== piceTwo) {
-        setTimeout(function() {
-          piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
-          piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
-        }, 500)
-      } else {
-        if (piceOneId !== piceTwoId) {
-          piceOne = $(`#${piceOneId}`).addClass('backAndWithe');
-          piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
-          $('#' + piceOneId).off('click');
-          $('#' + piceTwoId).off('click');
-          
-
-          equalPices++
-        }
-      }
-      howManyClicks = 0;
-    }
-  }
-  game();
-})
-
-//SCORE
-
-
-
-
-
-//PERDER O GANAR
-
-function game () {
-  if (equalPices < 6) {
-    if (totalClicks == 18  && attempts == 18) {
-      $('.message').html('Perdiste! 😢');1
-      $('#gameOver').removeClass('hidden');
-      $('.buttonDifficulty').prop('disabled', false);
-    } else if (totalClicks == 12 && attempts == 12) {
-      $('#gameOver').removeClass('hidden');
-      $('.message').html('Perdiste! 😢');  
-     $('.buttonDifficulty').prop('disabled', false); 
-    } else if (totalClicks == 9  && attempts == 9) {
-      $('#gameOver').removeClass('hidden');
-      $('.message').html('Perdiste! 😢');
-      $('.buttonDifficulty').prop('disabled', false);
-    }
-  } else {
-    if (equalPices === 6) {
-    $('#gameOver').removeClass('hidden');
-    $('.buttonDifficulty').prop('disabled', false);
-    $('.message').html(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
-
-    
-    var rankingObj = {
-      rankingName : name,
-      rankingLevel : level,
-      rankingAttempts : totalClicks
-    }  
-
-    if (localStorage.getItem('ranking') == null) {
-      score = []; 
+function play () {
+  $('.images').on('click', function () {
+    var visible = $(this).attr('data-img');
+    $(this).attr('src', visible);
+    $(this).parent('.oneImageContainer').addClass('flip');
+    howManyClicks++;
+    if (howManyClicks === 1) {
+      piceOne = $(this).attr('data-img');
+      piceOneId = $(this).attr('id');
     } else {
-      score = JSON.parse(localStorage.getItem('ranking'));
-    }
-
-    var ranking = {
-      rankingName : name,
-      rankingLevel : level,
-      rankingAttempts : totalClicks
-    }
-
-    score.unshift(ranking);
-    
-    localStorage.setItem('ranking', JSON.stringify(score));
-
-    var ranking = localStorage.getItem('ranking');
-    ranking = JSON.parse(ranking);
-
-
-
-    if (ranking !== null) {
-      var max = 5
-      if (ranking.length < 5) {
-        max = ranking.length
-      }
-
-      for (i = 0; i < max; i++) {
-        $('#ranking').append(`
-          <div class="row">
-            <div id="rankingName">
-                <p>${ranking[i].rankingName}</p>
-              </div>  
-              <div id="rankingLevel">
-                <p>${ranking[i].rankingLevel}</p>
-              </div>
-              <div id="rankingAttempts">
-                <p>${ranking[i].rankingAttempts}</p>
-              </div>
-          </div>
-        `)
+      if (piceOneId !== $(this).attr('id')) {
+        piceTwo = $(this).attr('data-img');
+        piceTwoId = $(this).attr('id');
+        totalClicks++;
+        $('#attempts').html('Intentos: Nº ' + totalClicks);
+        if (howManyClicks == 2) {
+          setTimeout(function() {
+          $('.images').parent('.oneImageContainer').removeClass('flip');            
+          }, 900) 
+        }
+        if (piceOne !== piceTwo) {   
+          setTimeout(function() {
+            piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
+            piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
+           
+          }, 1000)
+        } else {
+          if (piceOneId !== piceTwoId) {
+            piceOne = $(`#${piceOneId}`).addClass('backAndWithe');
+            piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
+            $('#' + piceOneId).off('click');
+            $('#' + piceTwoId).off('click');
+            
+  
+            equalPices++
+          }
+        }
+        howManyClicks = 0;
       }
     }
-
-    }
-  }
+    game();
+  })
 
 }
 
 
+play ();
 
+//PERDER O GANAR
+
+function game () {
+  setTimeout(function() {
+    if (equalPices < 6) {
+      if (totalClicks == 18  && attempts == 18) {
+        $('.message').html('Perdiste! 😢');1
+        $('#gameOver').removeClass('hidden');
+        $('.buttonDifficulty').prop('disabled', false);
+      } else if (totalClicks == 12 && attempts == 12) {
+        $('#gameOver').removeClass('hidden');
+        $('.message').html('Perdiste! 😢');  
+       $('.buttonDifficulty').prop('disabled', false); 
+      } else if (totalClicks == 9  && attempts == 9) {
+        $('#gameOver').removeClass('hidden');
+        $('.message').html('Perdiste! 😢');
+        $('.buttonDifficulty').prop('disabled', false);
+      }
+    } else {
+      if (equalPices === 6) {
+      $('#gameOver').removeClass('hidden');
+      $('.buttonDifficulty').prop('disabled', false);
+      $('.message').html(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
+  
+      ranking (); 
+      }
+    }
+  }, 900)
+}
+
+
+function ranking () {
+  if (localStorage.getItem('ranking') == null) {
+    score = []; 
+  } else {
+    score = JSON.parse(localStorage.getItem('ranking'));
+  }
+
+  var rankingObj = {
+    rankingName : name,
+    rankingLevel : level,
+    rankingAttempts : totalClicks
+  }
+
+  score.unshift(rankingObj);
+
+  localStorage.setItem('ranking', JSON.stringify(score));
+
+  var ranking = localStorage.getItem('ranking');
+  ranking = JSON.parse(ranking);
+
+
+  if (ranking !== null) {
+    console.log('ranking1');
+    var max = 5;
+    if (ranking.length < 5) {
+      console.log('rankin2');
+      max = ranking.length
+    }
+    for (i = 0; i < max; i++) {
+      console.log('ranking 3');
+      $('#ranking').append(`
+        <div class="row">
+          <div id="rankingName">
+            <p>${ranking[i].rankingName}</p>
+          </div>  
+          <div id="rankingLevel">
+            <p>${ranking[i].rankingLevel}</p>
+          </div>
+          <div id="rankingAttempts">
+            <p>${ranking[i].rankingAttempts}</p>
+          </div>
+        </div>
+      `)
+      score = []; 
+    }
+  }
+}
