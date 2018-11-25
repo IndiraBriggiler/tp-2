@@ -101,7 +101,7 @@ $('#expert').on('click', function () {
 })
 
 function fillAttempts (attempts) {
-  $('#findAttempts').html('Encontra todos los pares en menos de ' + attempts + ' intentos');
+  $('#findAttempts').html(`Encontra todos los pares en menos de <span class="attemptsNumber"> ${attempts} </span> intentos`);
 }
 
 // IMAGENES DEL BOARD
@@ -135,9 +135,7 @@ function reset () {
    }
 
 
-// }
-
-
+}
 
   
 $(document).on('click', '.images', function () {
@@ -145,35 +143,13 @@ $(document).on('click', '.images', function () {
   $(this).attr('src', visible);
 })
 
-  
 
-
-
-// IMAGEN FLIP 
-
-
-
-// $('#img1').flipIt({
-//   trigger: 'click'
-// })  
-
-
-
-// function flip() {
-//   $('#' + imagesId).toggleClass('flipped');
-// }
-  // $('#img1').flip();
-
-// }
-// $(document).on('click', '.images', function () {
-//   $(this).attr('src','images[i]');
-//   flipImage();
-// })
  
 
 //SELECCCIONAR FICHAS IGUALES O NO
 
 $('.images').on('click', function () {
+  $('this').addClass('flip');
   howManyClicks++;
   if (howManyClicks === 1) {
     piceOne = $(this).attr('data-img');
@@ -206,7 +182,6 @@ $('.images').on('click', function () {
   game();
 })
 
-}
 //SCORE
 
 

@@ -82,33 +82,46 @@ body {
 }
 .board .start-playing {
   font-family: "Mali", cursive;
+  font-weight: bold;
   text-align: center;
+  margin: 1vh 0vw;
 }
 .board .start-playing p {
   margin: 0;
   font-size: 10px;
 }
-.board .row {
+.board .start-playing p .attemptsNumber {
+  color: #3fadd3;
+}
+.board .start-playing #helloName {
+  font-size: 13px;
+}
+.board .mainContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding: 0 4px;
 }
-.board .column {
-  flex: 30vw;
-  padding: 0 4px;
-  margin: 0vw 5vh;
+.board .mainContainer .imagesContainer {
+  display: grid;
+  grid-template-columns: 19vw 19vw 19vw;
+  grid-row-gap: 1vh;
+  grid-column-gap: 2vw;
 }
-.board .column img {
-  max-width: 19vw;
-  margin-top: 8px;
+.board .mainContainer .imagesContainer .oneImageContainer {
   vertical-align: middle;
   border: 1px solid #fd9727;
+  margin: 1vw;
+  width: 17vw;
+  height: 9.7vh;
+}
+.board .mainContainer .imagesContainer .oneImageContainer .images {
+  width: 100%;
 }
 .board .attempts {
   border-radius: 10px;
   border: solid 4px #3fadd3;
-  margin: 3vh;
+  margin: 1vh auto;
   width: 31vw;
   text-align: center;
 }
@@ -178,7 +191,9 @@ body {
 }
 
 .flip {
-  transform-origin: center right;
+  transition: all 1s ease-in-out;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
 }
 
 @media (min-width: 800px) {
@@ -203,19 +218,32 @@ body {
   }
 
   .board {
-    margin: 2vw 10vw 10vw 10vw;
+    margin: 1vw 14vw 0vw 14vw;
   }
   .board .title {
     font-size: 30px;
   }
-  .board .column {
-    margin: 0;
-    -ms-flex: 20vw;
-    flex: 20vw;
-    max-width: 7vw;
+  .board .start-playing p {
+    font-size: 12px;
   }
-  .board .column img {
-    max-width: 7vw;
+  .board .mainContainer {
+    margin: 2vh;
+  }
+  .board .mainContainer .imagesContainer {
+    grid-template-columns: 7vw 7vw 7vw 7vw;
+    grid-row-gap: 0.8vh;
+    grid-column-gap: 1.3vh;
+  }
+  .board .mainContainer .imagesContainer .oneImageContainer {
+    width: 7vw;
+    height: 15.4vh;
+    margin: 0;
+  }
+  .board .attempts {
+    margin: 2vh auto;
+  }
+  .board .attempts p {
+    margin: 1vh;
   }
 
   .gameOver .messageBox {

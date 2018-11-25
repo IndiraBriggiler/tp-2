@@ -91,42 +91,55 @@ body{
   background-color: rgba(249, 233, 224, 0.5);
   .start-playing { 
     font-family: $text; 
+    font-weight: bold;
     text-align: center;
+    margin: 1vh 0vw;
     p {
       margin: 0;
       font-size: 10px;
+      .attemptsNumber {
+        color: #3fadd3;
+      }
+    }
+    #helloName {
+      font-size: 13px;
     }
   }
-  .row {
+  .mainContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 0 4px;
-  }
-  .column {
-    flex: 30vw;
-    padding: 0 4px;
-    margin: 0vw 5vh;
-    img {
-    max-width: 19vw;  
-    margin-top: 8px;
-    vertical-align: middle;
-    border: 1px solid #fd9727;
+    .imagesContainer {
+      display: grid;
+      grid-template-columns: 19vw 19vw 19vw;
+      grid-row-gap: 1vh;
+      grid-column-gap: 2vw;
+      .oneImageContainer {
+        vertical-align: middle;
+        border: 1px solid #fd9727;
+        margin: 1vw;
+        width: 17vw;
+        height: 9.7vh;
+        .images {
+          width: 100%;
+        }
+      }
     }
   }
   .attempts {
     border-radius: 10px;
     border: solid 4px #3fadd3;
-    margin: 3vh;
+    margin: 1vh auto;
     width: 31vw;
     text-align: center;
-  }
-  
+  }  
 }
 
 .hidden {
   display: none;
 }
+
 
 .gameOver {
   width: 100vw;
@@ -182,7 +195,9 @@ body{
 }
 
 .flip {
-  transform-origin: center right;
+  transition: all 1s ease-in-out;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
 }
 
 
@@ -213,20 +228,36 @@ body{
     }
   }
   .board{
-    margin: 2vw 10vw 10vw 10vw;
+    margin: 1vw 14vw 0vw 14vw;
     .title{
       font-size: 30px;
     }
-    .column {
-      margin: 0;
-      -ms-flex: 20vw;
-      flex: 20vw;
-      max-width: 7vw;
-      img {
-        max-width: 7vw; 
+    .start-playing {
+      p{
+        font-size: 12px;
       }
     }
-  }
+    .mainContainer {
+      margin: 2vh;
+      .imagesContainer {
+        grid-template-columns: 7vw 7vw 7vw 7vw;
+        grid-row-gap: 0.8vh;
+        grid-column-gap: 1.3vh;
+        .oneImageContainer {
+          width: 7vw;
+          height: 15.4vh;
+          margin: 0;
+        }
+      }
+    }
+    .attempts {
+      margin: 2vh auto;
+      p {
+        margin: 1vh;
+      }
+    }
+  }  
+
   .gameOver {
     .messageBox {
       width: 30vw;
