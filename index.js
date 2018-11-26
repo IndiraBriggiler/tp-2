@@ -196,7 +196,7 @@ play ();
 //PERDER O GANAR
 
 function game () {
-  setTimeout(function() {
+  // setTimeout(function() {
     if (equalPices < 6) {
       if (totalClicks == 18  && attempts == 18) {
         $('.message').html('Perdiste! 😢');1
@@ -220,7 +220,7 @@ function game () {
       ranking (); 
       }
     }
-  }, 900)
+  // }, 900)
 }
 
 
@@ -231,13 +231,13 @@ function ranking () {
     score = JSON.parse(localStorage.getItem('ranking'));
   }
 
-  var rankingObj = {
+  var ranking = {
     rankingName : name,
     rankingLevel : level,
     rankingAttempts : totalClicks
   }
 
-  score.unshift(rankingObj);
+  score.unshift(ranking);
 
   localStorage.setItem('ranking', JSON.stringify(score));
 
@@ -246,14 +246,12 @@ function ranking () {
 
 
   if (ranking !== null) {
-    console.log('ranking1');
     var max = 5;
     if (ranking.length < 5) {
-      console.log('rankin2');
       max = ranking.length
     }
+    $('#ranking').html('')
     for (i = 0; i < max; i++) {
-      console.log('ranking 3');
       $('#ranking').append(`
         <div class="row">
           <div id="rankingName">
@@ -267,7 +265,6 @@ function ranking () {
           </div>
         </div>
       `)
-      score = []; 
     }
   }
 }
