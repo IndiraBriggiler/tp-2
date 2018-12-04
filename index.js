@@ -9,6 +9,32 @@ var equalPices = 0;
 var level;
 var name;
 var score;
+var images;
+var theme;
+var harry = ['images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg', 'images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg'];
+var animals = ['images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg', 'images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg'];
+
+// ELEGIR THEME
+
+// $('#ownTheme').on('click', function () {
+
+// })
+
+$('#harry').on('click', function () {
+  images = harry;
+  console.log('funcion', images)
+  theme = 'harry';
+})
+
+
+
+$('#animals').on('click', function () {
+  images = animals
+  console.log('funcion', images)
+  theme = 'animals';
+})
+
+console.log('fuera de la funcion', images)
 
 
 
@@ -38,7 +64,7 @@ $('#btnPlayAgain').on('click', function () {
 
   reset();
 
-  play ();
+  play();
 })
 
 
@@ -49,7 +75,7 @@ $('#gameOver').addClass('hidden');
 
 
 var isSelected = false;
-$('.buttonDifficulty').on('click', function () {
+$('#letsPlay').on('click', function () {
   name = $('#name').val();  
   if (name == '') {
     $('#nameRequired').removeClass('hidden');
@@ -63,7 +89,7 @@ $('.buttonDifficulty').on('click', function () {
     }
     
     $('#helloName').html('Hola ' + name);
-    $('.images').attr('src', 'images/tapada.jpg');
+    $('.images').attr('src', `images/cover/${theme}.jpg`);
     $('#attempts').html('Intentos: ' + totalClicks);
     $('#greeting').addClass('hidden');
     $('#board').removeClass('hidden');
@@ -76,6 +102,7 @@ $('#easy').on('click', function () {
   $('#chooseLevel').html(level);
   attempts = 18;
   fillAttempts(attempts);
+  $('.buttonDifficulty').addClass('clicked');
   }
 })
 
@@ -85,6 +112,7 @@ $('#medium').on('click', function () {
   $('#chooseLevel').append(level);
   attempts = 12;
   fillAttempts(attempts);
+  $('.buttonDifficulty').addClass('clicked');
   }
 })
 
@@ -94,6 +122,7 @@ $('#expert').on('click', function () {
     $('#chooseLevel').append(level);
     attempts = 9;
     fillAttempts(attempts);
+    $('.buttonDifficulty').addClass('clicked');
   }
  
 })
@@ -103,12 +132,6 @@ function fillAttempts (attempts) {
 }
 
 // IMAGENES DEL BOARD
-
-var images = ['images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg', 'images/alce.jpg', 'images/epelante.jpg', 'images/nena.jpg', 'images/peces.jpg', 'images/unichancho.jpg', 'images/zapas.jpg'];
-
-window.onload = function() {
-  reset();
-};
 
 function shuffle(images) {
   var j
@@ -123,24 +146,17 @@ function shuffle(images) {
   return images;
 }
 
-
-
 function reset () {
   images = shuffle(images);
   var imagesLength = $(images).length;
   for (i = 0; i < imagesLength; i++) {
      $('.images').eq(i).attr('data-img', images[i]);
    }
-
-
 }
 
-  
-// $(document).on('click', '.images', function () {
-//   var visible = $(this).attr('data-img');
-//   $(this).attr('src', visible);
-// })
-
+window.onload = function() {
+  reset();
+}
 
 
 //SELECCCIONAR FICHAS IGUALES O NO
@@ -149,6 +165,7 @@ function play () {
   $('.images').on('click', function () {
     var visible = $(this).attr('data-img');
     $(this).attr('src', visible);
+    $(this).parent('.oneImageContainer').addClass('animated');
     $(this).parent('.oneImageContainer').addClass('flip');
     howManyClicks++;
     if (howManyClicks === 1) {
@@ -162,14 +179,14 @@ function play () {
         $('#attempts').html('Intentos: Nº ' + totalClicks);
         if (howManyClicks == 2) {
           setTimeout(function() {
+          $('.images').parent('.oneImageContainer').removeClass('animated'); 
           $('.images').parent('.oneImageContainer').removeClass('flip');            
           }, 900) 
         }
         if (piceOne !== piceTwo) {   
           setTimeout(function() {
-            piceOne = $(`#${piceOneId}`).attr('src', 'images/tapada.jpg');
-            piceTwo = $(`#${piceTwoId}`).attr('src', 'images/tapada.jpg');
-           
+            piceOne = $(`#${piceOneId}`).attr('src', `images/cover/${theme}.jpg`);
+            piceTwo = $(`#${piceTwoId}`).attr('src', `images/cover/${theme}.jpg`);           
           }, 1000)
         } else {
           if (piceOneId !== piceTwoId) {
@@ -177,8 +194,13 @@ function play () {
             piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
             $('#' + piceOneId).off('click');
             $('#' + piceTwoId).off('click');
-            
-  
+            setTimeout(function() {
+              piceOne = $(`#${piceOneId}`).addClass('animated');
+              piceTwo = $(`#${piceTwoId}`).addClass('animated');
+              piceOne = $(`#${piceOneId}`).addClass('shake');
+              piceTwo = $(`#${piceTwoId}`).addClass('shake');
+            }, 500) 
+
             equalPices++
           }
         }
@@ -196,31 +218,29 @@ play ();
 //PERDER O GANAR
 
 function game () {
-  // setTimeout(function() {
-    if (equalPices < 6) {
-      if (totalClicks == 18  && attempts == 18) {
-        $('.message').html('Perdiste! 😢');1
-        $('#gameOver').removeClass('hidden');
-        $('.buttonDifficulty').prop('disabled', false);
-      } else if (totalClicks == 12 && attempts == 12) {
-        $('#gameOver').removeClass('hidden');
-        $('.message').html('Perdiste! 😢');  
-       $('.buttonDifficulty').prop('disabled', false); 
-      } else if (totalClicks == 9  && attempts == 9) {
-        $('#gameOver').removeClass('hidden');
-        $('.message').html('Perdiste! 😢');
-        $('.buttonDifficulty').prop('disabled', false);
-      }
-    } else {
-      if (equalPices === 6) {
+  if (equalPices < 6) {
+    if (totalClicks == 18  && attempts == 18) {
+      $('.message').html('Perdiste! 😢');1
       $('#gameOver').removeClass('hidden');
       $('.buttonDifficulty').prop('disabled', false);
-      $('.message').html(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
-  
-      ranking (); 
-      }
+    } else if (totalClicks == 12 && attempts == 12) {
+      $('#gameOver').removeClass('hidden');
+      $('.message').html('Perdiste! 😢');  
+      $('.buttonDifficulty').prop('disabled', false); 
+    } else if (totalClicks == 9  && attempts == 9) {
+      $('#gameOver').removeClass('hidden');
+      $('.message').html('Perdiste! 😢');
+      $('.buttonDifficulty').prop('disabled', false);
     }
-  // }, 900)
+  } else {
+    if (equalPices === 6) {
+    $('#gameOver').removeClass('hidden');
+    $('.buttonDifficulty').prop('disabled', false);
+    $('.message').html(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
+
+    ranking (); 
+    }
+  }
 }
 
 
