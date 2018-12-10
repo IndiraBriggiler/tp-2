@@ -13,16 +13,15 @@ var images;
 var theme;
 var harry = ['images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg', 'images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg'];
 var animals = ['images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg', 'images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg'];
+var yourTheme = [];
+var url = "http://localhost:3000/";
+
 
 // ELEGIR THEME
 
 $('#ownTheme').on('click', function () {
   $('.uploadImages').removeClass('hidden');
 })
-
-
-var listaImagenes = []
-var url = "http://localhost:3000/";
 
 $('#frmUploader').submit(function (e) {
   $(this).ajaxSubmit({
@@ -34,12 +33,14 @@ $('#frmUploader').submit(function (e) {
     },
     success: function (response) {
       var imageName = e.target[0].files[0].name;
-      listaImagenes.push(url + imageName);
+      yourTheme.push(url + imageName);
+      yourTheme.push(url + imageName);
       $('.uploadImages').append(`
       <p>Imagenes cargadas correctamente</p>
       <button class="closeModal">Cerrar</button>
       `)
-
+      images = yourTheme;
+      theme = 'yourTheme';
     }
   });
   return false;
