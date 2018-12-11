@@ -35,6 +35,7 @@ body{
   margin: auto;
   margin-top: 3vh;
   text-align: center;
+  position: relative;
   .ask-name{
     font-family: $text; 
     p{
@@ -78,6 +79,11 @@ body{
   @include title();
   margin: 10px;
   text-align: center;
+}
+
+.uploadImages {
+  position: absolute;
+  top: 20vh;
 }
 
 .board {
@@ -144,7 +150,6 @@ body{
   display: none;
 }
 
-
 .gameOver {
   width: 100vw;
   height: 100vh;
@@ -204,7 +209,6 @@ body{
   transform: rotateY(720deg);
 }
 
-
 //DESKTOP
 
 @media (min-width: 800px) {
@@ -220,13 +224,7 @@ body{
       textarea{
         width: 25vw;
       }
-    }
-    .difficulty{
-      .buttonDifficulty{
-        width: 25vw;
-        height: 5vh;
-      }
-    }
+    }  
     #nameRequired {
       font-size: 15px;
     }
@@ -261,6 +259,11 @@ body{
       }
     }
   }  
+
+  .buttonDifficulty{
+    width: 25vw;
+    height: 5vh;
+  }
 
   .gameOver {
     .messageBox {

@@ -1,125 +1,170 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Mali|Pacifico" rel="stylesheet">  
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Mali|Pacifico" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="images/icons/002-cumpleanos.png" type="image/x-icon">
+
+
   <title>MEMOTEST</title>
 </head>
+
 <body>
-  
-<!-- SALUDO INICIAL -->
+
+  <!-- SALUDO INICIAL -->
 
   <div class="greeting" id="greeting">
     <p class="title">Memotest</p>
     <div class="ask-name">
-      <p>Hola &#x1F44B;! Vamos a jugar al Memotest</p> <p> Pero antes de empezar... </p> <p>Cual es tu nombre&#x2753</p>
+      <p>Hola &#x1F44B;! Vamos a jugar al Memotest</p>
+      <p> Pero antes de empezar... </p>
+      <p>Cual es tu nombre&#x2753</p>
       <textarea name="nombre" id="name" placeholder="Nombre"></textarea>
     </div>
     <div class="difficulty">
       <p>Con qué dificultad te gustaría jugar?</p>
-      <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL</button></a> 
-      <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO</button></a> 
-      <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO</button></a> 
+      <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL</button></a>
+      <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO</button></a>
+      <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO</button></a>
+    </div>
+    <div class="chooseImage">
+      <p>Qué temática elegís?</p>
+      <button id="harry" class="buttonDifficulty">Harry Potter </button>
+      <button id="animals" class="buttonDifficulty">Animales</button>
+      <button id="flowes" class="buttonDifficulty">Flores</button>
+      <button id="ownTheme" class="buttonDifficulty">Subir mi propia temática!</button>
+    </div>
+    <div>
+      <button id="letsPlay" class="buttonDifficulty">JUGAR!</button>
     </div>
     <div class="hidden" id="nameRequired">
       <span>UPSS... El nombre es requerido</span>
     </div>
   </div>
 
-<!-- SALUDO INICIAL HASTA ACA-->
+  <!-- SALUDO INICIAL HASTA ACA-->
 
 
-<!-- TABLERO -->
+  <!-- CARGAR IMAGENES MODAL -->
+
+  <div class="uploadImages hidden">
+    <form id="frmUploader" enctype="multipart/form-data" action="http://localhost:3000/api/Upload/" method="post">
+      <input type="file" name="imgUploader" multiple />
+      <input type="submit" name="submit" id="btnSubmit" value="Upload" /> </form>
+  </div>
+
+ 
+
+  <!-- CARGAR IMAGENES MODAL HASTA ACÁ -->
+
+
+  <!-- TABLERO -->
   <div class="board" id="board">
     <p class="title">Memotest</p>
     <div class="start-playing">
-      <p id="helloName"></p> 
-      <p id="findAttempts"></p> 
+      <p id="helloName"></p>
+      <p id="findAttempts"></p>
       <p>Nivel</p>
       <p id="chooseLevel"> </p>
     </div>
     <div class="mainContainer">
       <div class="imagesContainer">
         <figure class="oneImageContainer">
-            <img id="img1" class="images" src="" data-img="" alt="">
+          <img id="img1" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img2" class="images" src="" data-img="" alt="">
+          <img id="img2" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img3" class="images" src="" data-img="" alt="">
+          <img id="img3" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img4" class="images" src="" data-img="" alt="">
+          <img id="img4" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img5" class="images" src="" data-img="" alt="">
+          <img id="img5" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img6" class="images" src="" data-img="" alt="">
+          <img id="img6" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img7" class="images" src="" data-img="" alt="">
+          <img id="img7" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img8" class="images" src="" data-img="" alt="">
+          <img id="img8" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img9" class="images" src="" data-img="" alt="">
+          <img id="img9" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img10" class="images" src="" data-img="" alt="">
+          <img id="img10" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img11" class="images" src="" data-img="" alt="">
+          <img id="img11" class="images" src="" data-img="" alt="">
         </figure>
         <figure class="oneImageContainer">
-            <img id="img12" class="images" src="" data-img="" alt="">
+          <img id="img12" class="images" src="" data-img="" alt="">
         </figure>
       </div>
     </div>
-    <div class="attempts"> 
+    <div class="attempts">
       <p id="attempts"> </p>
     </div>
   </div>
-<!-- TABLERO HASTA ACA -->
+  <!-- TABLERO HASTA ACA -->
 
 
 
-<!-- GAME OVER -->
+  <!-- GAME OVER -->
 
   <div id="gameOver" class="gameOver">
     <div class="messageBox">
       <p class="message"></p>
       <p>Ya podes volver a jugar</p>
       <button class="playAgain" id="btnPlayAgain">VOLVER A JUGAR</button>
-        <div id="ranking">
-          <div class="row">
-              <div id="rankingName">
-                  <p>NOMBRE</p>
-                </div>  
-                <div id="rankingLevel">
-                  <p>NIVEL</p>
-                </div>
-                <div id="rankingAttempts">
-                  <p>INTENTOS</p>
-                </div>
+      <div id="ranking">
+        <div class="row">
+          <div id="rankingName">
+            <p>NOMBRE</p>
           </div>
-          
+          <div id="rankingLevel">
+            <p>NIVEL</p>
+          </div>
+          <div id="rankingAttempts">
+            <p>INTENTOS</p>
+          </div>
         </div>
-    </div> 
+
+      </div>
+    </div>
   </div>
 
 
-<!-- GAME OVER HASTA ACA -->
+  <!-- GAME OVER HASTA ACA -->
+
+  <footer>
+    <p>Icons made by <a href="https://www.flaticon.es/autores/smashicons">SmashIcons</a>, <a href="https://www.flaticon.es/autores/freepik">Freepik</a>
+      from <a href="www.flaticon.com">www.flaticon.com</a></p>
+  </footer>
 
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
   <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
+    crossorigin="anonymous"></script>
+
 </body>
+
 </html>
