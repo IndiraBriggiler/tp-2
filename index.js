@@ -13,9 +13,12 @@ var images;
 var theme;
 var harry = ['images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg', 'images/harry/dobby.jpg', 'images/harry/dumbledore.jpg', 'images/harry/harry.jpg', 'images/harry/hermoinie.jpg', 'images/harry/ron.jpg', 'images/harry/voldemort.jpg'];
 var animals = ['images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg', 'images/animals/alce.jpg', 'images/animals/epelante.jpg', 'images/animals/nena.jpg', 'images/animals/peces.jpg', 'images/animals/unichancho.jpg', 'images/animals/zapas.jpg'];
+var starWars = ['images/starWars/chewbacca.jpeg', 'images/starWars/darth.jpg', 'images/starWars/princess.jpeg', 'images/starWars/r2d2.jpg', 'images/starWars/team.jpeg', 'images/starWars/yoda.jpg', 'images/starWars/chewbacca.jpeg', 'images/starWars/darth.jpg', 'images/starWars/princess.jpeg', 'images/starWars/r2d2.jpg', 'images/starWars/team.jpeg', 'images/starWars/yoda.jpg'];
 var yourTheme = [];
 var url = "http://localhost:3000/";
-
+let expert = $('#expert');
+let medium = $('#medium');
+let easy = $('#easy');
 
 // ELEGIR THEME
 
@@ -41,6 +44,7 @@ $('#frmUploader').submit(function (e) {
       `)
       images = yourTheme;
       theme = 'yourTheme';
+      $(this).addClass('clicked');
     }
   });
   return false;
@@ -50,25 +54,33 @@ $('body').on('click', '.closeModal', function() {
   $('.uploadImages').addClass('hidden');
 })
 
-console.log($('.closeModal'))
-
 $('#harry').on('click', function () {
   images = harry;
-  console.log('funcion', images)
+  $(this).addClass('clicked');
+  $('#animals').removeClass('clicked');
+  $('#starWars').removeClass('clicked');
+  easy.removeClass('clicked');
   theme = 'harry';
+  $(this).addClass('clicked');
 })
-
-
 
 $('#animals').on('click', function () {
   images = animals;
-  console.log('funcion', images);
+  $(this).addClass('clicked');
+  $('#harry').removeClass('clicked');
+  $('#starWars').removeClass('clicked');
   theme = 'animals';
+  $(this).addClass('clicked');
 })
 
-console.log('fuera de la funcion', images)
-
-
+$('#starWars').on('click', function () {
+  images = starWars;
+  $(this).addClass('clicked');
+  $('#harry').removeClass('clicked');
+  $('#animals').removeClass('clicked');
+  theme = 'starWars';
+  $(this).addClass('clicked');
+})
 
 //VOLVER A JUGAR
 
@@ -129,33 +141,39 @@ $('#letsPlay').on('click', function () {
   reset();
 })
 
-$('#easy').on('click', function () {
+easy.on('click', function () {
   level = 'FACIL';
+  $(this).addClass('clicked');
+  medium.removeClass('clicked');
+  expert.removeClass('clicked');
   if (name !== "") {
     $('#chooseLevel').html(level);
     attempts = 18;
     fillAttempts(attempts);
-    $('.buttonDifficulty').addClass('clicked');
   }
 })
 
-$('#medium').on('click', function () {
+medium.on('click', function () {
   level = 'INTERMEDIO';
+  $(this).addClass('clicked');
+  expert.removeClass('clicked');
+  easy.removeClass('clicked');
   if (name !== "") {
     $('#chooseLevel').append(level);
     attempts = 12;
     fillAttempts(attempts);
-    $('.buttonDifficulty').addClass('clicked');
   }
 })
 
-$('#expert').on('click', function () {
+expert.on('click', function () {
   level = 'EXPERTO';
+  $(this).addClass('clicked');
+  medium.removeClass('clicked');
+  easy.removeClass('clicked');
   if (name !== "") {
     $('#chooseLevel').append(level);
     attempts = 9;
     fillAttempts(attempts);
-    $('.buttonDifficulty').addClass('clicked');
   }
 
 })

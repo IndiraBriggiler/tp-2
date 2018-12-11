@@ -1,4 +1,3 @@
-$text: 'Mali', cursive;
 
 @mixin title {
   font-family: 'Pacifico', cursive;
@@ -16,6 +15,13 @@ $text: 'Mali', cursive;
   width: 40vw;
   height: 5vh;
   margin: 2px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
 }
 
 body{
@@ -23,6 +29,7 @@ body{
   padding: 0;
   background-image: url('../images/fondo.jpg');
   position: relative;
+  font-family: 'Mali', cursive;
 }
 
 .greeting{
@@ -32,12 +39,19 @@ body{
   width: 40vw;
   padding: 5vw;
   height: auto;
-  margin: auto;
-  margin-top: 3vh;
+  margin: 1vh auto;
   text-align: center;
   position: relative;
   .ask-name{
-    font-family: $text; 
+    margin: 2vh 0;
+    .hello {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        margin: 0 1vw;
+      }
+    }
     p{
       margin: 0;
     }
@@ -47,12 +61,29 @@ body{
       margin-top: 10px;
     }
   }  
-  .difficulty{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-family: $text;
+  .difficulty {
+    .chooseDifficulty{
+      display: flex;
+      justify-content: center;
+    }
   }
+
+  .theme {
+    .chooseTheme {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  .play {
+    display: flex;
+    justify-content: center;
+    margin: 2vh 0;
+    #letsPlay {
+      margin: 0 1vw;
+    }
+  }
+
   #nameRequired {
     background-color: lightsalmon;
     color: tomato;
@@ -84,6 +115,21 @@ body{
 .uploadImages {
   position: absolute;
   top: 20vh;
+  right: 14vw;
+  width: 70vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border: solid 1vw black;
+  border-radius: 10px;
+  background-color: #f9e9e0;
+}
+
+.icons {
+  height: 8vh;
+  margin: 0px 1vw;
 }
 
 .board {
@@ -96,7 +142,6 @@ body{
   border-radius: 10px;
   background-color: rgba(249, 233, 224, 0.5);
   .start-playing { 
-    font-family: $text; 
     font-weight: bold;
     text-align: center;
     margin: 1vh 0vw;
@@ -123,7 +168,6 @@ body{
       grid-column-gap: 2vw;
       .oneImageContainer {
         vertical-align: middle;
-        border: 1px solid #fd9727;
         margin: 1vw;
         width: 17vw;
         height: 9.7vh;
@@ -159,7 +203,6 @@ body{
   position: absolute;
   top: -4%;
   align-items: center;
-  font-family: $text;
   padding: 1vh 0vw;
   .messageBox {
     border: 2px solid black;
@@ -170,7 +213,6 @@ body{
   }
   .playAgain {
     @include btnStyles();
-    // width: 14vw;
   }
   #ranking {
     border: 2px solid black;
@@ -209,13 +251,19 @@ body{
   transform: rotateY(720deg);
 }
 
+.clicked {
+  box-shadow: inset 0 0 8px #050505;
+  background: #f17f05;
+}
+
+
 //DESKTOP
 
 @media (min-width: 800px) {
   .greeting{
-    width: 25vw;
+    width: 50vw;
     height: auto;
-    padding: 3vw;
+    padding: 1vw;
     .title{
       margin: 10px;
       font-size: 3vw;
@@ -260,11 +308,6 @@ body{
     }
   }  
 
-  .buttonDifficulty{
-    width: 25vw;
-    height: 5vh;
-  }
-
   .gameOver {
     .messageBox {
       width: 30vw;
@@ -278,8 +321,16 @@ body{
       margin: 5vh auto;
     }
   }
+
+  .buttonDifficulty{
+    width: auto;
+    min-width: 15vw;
+    height: auto;
+  }
+
+  .btnThemes {
+    width: 20vw;
+  }
+
 }
-
-
-
 
