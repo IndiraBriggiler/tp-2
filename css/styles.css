@@ -343,8 +343,16 @@ body {
     height: 8vh;
   }
 
-  .difficulty .chooseDifficulty {
+  .greeting .difficulty .chooseDifficulty {
     flex-direction: row;
+  }
+
+  .animalsM {
+    display: none;
+  }
+
+  .animalsD {
+    display: block;
   }
 }
 
