@@ -5,9 +5,25 @@ a {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../images/fondo.jpg");
+  background-image: url("../images/background/13877.eps");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: auto 60vw;
   position: relative;
   font-family: "Mali", cursive;
+}
+
+.harry {
+  background-image: url("../images/background/harry.png");
+}
+
+.starWars {
+  background-image: url("../images/background/starWars.jpg");
+}
+
+.animals {
+  background-image: url("../images/background/animals.jpg");
 }
 
 .greeting {
@@ -39,14 +55,22 @@ body {
   resize: none;
   width: 40vw;
   margin-top: 10px;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: "Mali", cursive;
 }
 .greeting .difficulty .chooseDifficulty {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .greeting .theme .chooseTheme {
   display: flex;
   justify-content: center;
+}
+.greeting .theme .btnThemes {
+  height: auto;
+  width: 20vw;
 }
 .greeting .play {
   display: flex;
@@ -56,7 +80,8 @@ body {
 .greeting .play #letsPlay {
   margin: 0 1vw;
 }
-.greeting #nameRequired {
+.greeting .required {
+  width: 30vw;
   background-color: lightsalmon;
   color: tomato;
   font-family: "Mali", cursive;
@@ -75,7 +100,7 @@ body {
   border: none;
   border-radius: 5px;
   width: 40vw;
-  height: 5vh;
+  height: auto;
   margin: 2px;
   justify-content: center;
   display: flex;
@@ -112,8 +137,8 @@ body {
 }
 
 .icons {
-  height: 8vh;
-  margin: 0px 1vw;
+  height: 4vh;
+  margin: 0.2vh 1vw;
 }
 
 .board {
@@ -203,7 +228,7 @@ body {
   border: none;
   border-radius: 5px;
   width: 40vw;
-  height: 5vh;
+  height: auto;
   margin: 2px;
   justify-content: center;
   display: flex;
@@ -264,7 +289,7 @@ body {
   .greeting .ask-name textarea {
     width: 25vw;
   }
-  .greeting #nameRequired {
+  .greeting .required {
     font-size: 15px;
   }
 
@@ -312,11 +337,14 @@ body {
   .buttonDifficulty {
     width: auto;
     min-width: 15vw;
-    height: auto;
   }
 
-  .btnThemes {
-    width: 20vw;
+  .icons {
+    height: 8vh;
+  }
+
+  .difficulty .chooseDifficulty {
+    flex-direction: row;
   }
 }
 

@@ -57,9 +57,11 @@ $('body').on('click', '.closeModal', function() {
 $('#harry').on('click', function () {
   images = harry;
   $(this).addClass('clicked');
+  $('#body').addClass('harry');
+  $('#body').removeClass('starWars');
+  $('#body').removeClass('animals');
   $('#animals').removeClass('clicked');
   $('#starWars').removeClass('clicked');
-  easy.removeClass('clicked');
   theme = 'harry';
   $(this).addClass('clicked');
 })
@@ -67,6 +69,9 @@ $('#harry').on('click', function () {
 $('#animals').on('click', function () {
   images = animals;
   $(this).addClass('clicked');
+  $('#body').addClass('animals');
+  $('#body').removeClass('starWars');
+  $('#body').removeClass('harry');
   $('#harry').removeClass('clicked');
   $('#starWars').removeClass('clicked');
   theme = 'animals';
@@ -76,11 +81,15 @@ $('#animals').on('click', function () {
 $('#starWars').on('click', function () {
   images = starWars;
   $(this).addClass('clicked');
+  $('#body').addClass('starWars');
+  $('#body').removeClass('animals');
+  $('#body').removeClass('harry');
   $('#harry').removeClass('clicked');
   $('#animals').removeClass('clicked');
   theme = 'starWars';
   $(this).addClass('clicked');
 })
+
 
 //VOLVER A JUGAR
 
@@ -126,7 +135,17 @@ $('#letsPlay').on('click', function () {
     setTimeout(function () {
       $('#nameRequired').addClass('hidden');
     }, 2000)
-  } else {
+  } else if (attempts == 0 ) {
+    $('#levelRequired').removeClass('hidden');
+    setTimeout(function () {
+      $('#levelRequired').addClass('hidden');
+    }, 2000)
+  } else if (theme == undefined) {
+    $('#themeRequired').removeClass('hidden');
+    setTimeout(function () {
+      $('#themeRequired').addClass('hidden');
+    }, 2000)
+  }  else {
     isSelected = true;
     if (isSelected === true) {
       $('.buttonDifficulty').prop('disabled', true);
