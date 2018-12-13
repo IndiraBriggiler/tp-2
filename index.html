@@ -21,7 +21,28 @@
 </head>
 
 <body id="body">
-
+ <!-- SDK FACEBOOK -->
+  <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : 'memotest',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.2'
+        });
+      };
+    
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+          
+  <!-- SDK FACEBOOK HASTA ACÁ -->
+ 
   <!-- SALUDO INICIAL -->
 
   <div class="greeting" id="greeting">
@@ -173,11 +194,13 @@
   </footer>
 
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
-  <script src="index.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
-    crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>
+  <script src="index.js"></script>
 
 </body>
 

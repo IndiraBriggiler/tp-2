@@ -5,7 +5,7 @@ a {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../images/background/13877.eps");
+  background-image: url("../images/background/144355-OTL4KT-535.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -328,6 +328,7 @@ body {
   }
   .gameOver .playAgain {
     width: 25vw;
+    margin: auto;
   }
   .gameOver #ranking {
     width: 22vw;
