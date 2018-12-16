@@ -20,8 +20,29 @@
   <title>MEMOTEST</title>
 </head>
 
-<body>
-
+<body id="body">
+ <!-- SDK FACEBOOK -->
+  <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : 'memotest',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.2'
+        });
+      };
+    
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+          
+  <!-- SDK FACEBOOK HASTA ACÁ -->
+ 
   <!-- SALUDO INICIAL -->
 
   <div class="greeting" id="greeting">
@@ -33,9 +54,9 @@
     <div class="difficulty">
       <p>Con qué dificultad te gustaría jugar?</p>
       <div class="chooseDifficulty">
-        <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL<img class="icons" src="images/icons/derp.png"></button></a>
-        <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO<img class="icons" src="images/icons/medium.png"></button></a>
-        <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO<img class="icons" src="images/icons/expert.png"></button></a>
+        <a href="#easy"><button id="easy" class="buttonDifficulty">FÁCIL<img class="icons" src="images/icons/sir.png"></button></a>
+        <a href="#medium"><button id="medium" class="buttonDifficulty">INTERMEDIO<img class="icons" src="images/icons/challange.png"></button></a>
+        <a href="#expert"><button id="expert" class="buttonDifficulty">EXPERTO<img class="icons" src="images/icons/mindBlow.png"></button></a>
       </div>  
     </div>
     <div class="theme">
@@ -43,11 +64,11 @@
       <div class="chooseTheme">
         <div class="column">
           <button id="harry" class="buttonDifficulty btnThemes">Harry Potter <img class="icons" src="images/icons/harry.png"></button>
-          <button id="animals" class="buttonDifficulty btnThemes">Animales<img class="icons" src="images/icons/animals.png"></button>
+          <button id="animals" class="buttonDifficulty btnThemes"> <span class="animalsD hidden">Animales</span> <span class="animalsM">Ani- males</span><img class="icons" src="images/icons/animals.png"></button>
         </div>
         <div class="column">
           <button id="starWars" class="buttonDifficulty btnThemes">Star Wars<img class="icons" src="images/icons/starWars.png"></button>
-          <button id="ownTheme" class="buttonDifficulty btnThemes">Subir mi propia temática!<img class="icons" src="images/icons/yourTheme.png"></button>
+          <button id="ownTheme" class="buttonDifficulty btnThemes">Subir tema!<img class="icons" src="images/icons/yourTheme.png"></button>
         </div>
       </div>
     </div>
@@ -55,8 +76,14 @@
       <p>Listo?</p>
       <button id="letsPlay" class="buttonDifficulty">JUGAR!<img class="icons" src="images/icons/play.png"></button>
     </div>
-    <div class="hidden" id="nameRequired">
-      <span>UPSS... El nombre es requerido</span>
+    <div class="hidden required" id="nameRequired">
+      <span>El nombre es requerido</span>
+    </div>
+    <div class="hidden required" id="levelRequired">
+      <span>El nivel es requerido</span>
+    </div>
+    <div class="hidden required" id="themeRequired">
+      <span>La temática es requerida</span>
     </div>
   </div>
 
@@ -69,6 +96,7 @@
     <form id="frmUploader" enctype="multipart/form-data" action="http://localhost:3000/api/Upload/" method="post">
       <input type="file" name="imgUploader" multiple class="selectFile"/>
       <input type="submit" name="submit" id="btnSubmit" value="Upload" class="buttonDifficulty"/> </form>
+      <button class="closeModal">Cerrar</button>
   </div>
 
  
@@ -166,11 +194,13 @@
   </footer>
 
 
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
-  <script src="index.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
-    crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>
+  <script src="index.js"></script>
 
 </body>
 

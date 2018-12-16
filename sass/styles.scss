@@ -13,7 +13,7 @@
   border: none;
   border-radius: 5px;
   width: 40vw;
-  height: 5vh;
+  height: auto;
   margin: 2px;
   justify-content: center;
   display: flex;
@@ -27,10 +27,27 @@ a {
 body{
   margin: 0;
   padding: 0;
-  background-image: url('../images/fondo.jpg');
+  background-image: url('../images/background/144355-OTL4KT-535.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: auto 60vw;
   position: relative;
   font-family: 'Mali', cursive;
 }
+
+.harry {
+  background-image: url('../images/background/harry.png');
+}
+
+.starWars { 
+  background-image: url('../images/background/starWars.jpg');
+}
+
+.animals {
+  background-image: url('../images/background/animals.jpg');
+}
+
 
 .greeting{
   border: solid 10px black;
@@ -59,12 +76,16 @@ body{
       resize: none;
       width: 40vw;
       margin-top: 10px;
+      border-radius: 5px;
+      font-size: 2vh;
+      font-family: 'Mali', cursive;
     }
   }  
   .difficulty {
     .chooseDifficulty{
       display: flex;
       justify-content: center;
+      flex-direction: column;
     }
   }
 
@@ -72,6 +93,10 @@ body{
     .chooseTheme {
       display: flex;
       justify-content: center;
+    }
+    .btnThemes {
+      height: auto;
+      width: 20vw;
     }
   }
   
@@ -84,7 +109,8 @@ body{
     }
   }
 
-  #nameRequired {
+  .required {
+    width: 30vw;
     background-color: lightsalmon;
     color: tomato;
     font-family: "Mali", cursive;
@@ -128,8 +154,8 @@ body{
 }
 
 .icons {
-  height: 8vh;
-  margin: 0px 1vw;
+  height: 4vh;
+  margin: 0.2vh 1vw;
 }
 
 .board {
@@ -273,7 +299,7 @@ body{
         width: 25vw;
       }
     }  
-    #nameRequired {
+    .required {
       font-size: 15px;
     }
   }
@@ -315,6 +341,7 @@ body{
     }
     .playAgain {
       width: 25vw;
+      margin: auto;
     }
     #ranking {
       width: 22vw;
@@ -325,12 +352,28 @@ body{
   .buttonDifficulty{
     width: auto;
     min-width: 15vw;
-    height: auto;
   }
 
-  .btnThemes {
-    width: 20vw;
+  .icons {
+    height: 8vh;
   }
+
+  .greeting {
+    .difficulty {
+      .chooseDifficulty {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .animalsM {
+    display: none;
+  }
+
+  .animalsD {
+    display: block;
+  }
+  
 
 }
 

@@ -50,16 +50,18 @@ $('#frmUploader').submit(function (e) {
   return false;
 });
 
-$('body').on('click', '.closeModal', function() {
+$('body').on('click', '.closeModal', function () {
   $('.uploadImages').addClass('hidden');
 })
 
 $('#harry').on('click', function () {
   images = harry;
   $(this).addClass('clicked');
+  $('#body').addClass('harry');
+  $('#body').removeClass('starWars');
+  $('#body').removeClass('animals');
   $('#animals').removeClass('clicked');
   $('#starWars').removeClass('clicked');
-  easy.removeClass('clicked');
   theme = 'harry';
   $(this).addClass('clicked');
 })
@@ -67,6 +69,9 @@ $('#harry').on('click', function () {
 $('#animals').on('click', function () {
   images = animals;
   $(this).addClass('clicked');
+  $('#body').addClass('animals');
+  $('#body').removeClass('starWars');
+  $('#body').removeClass('harry');
   $('#harry').removeClass('clicked');
   $('#starWars').removeClass('clicked');
   theme = 'animals';
@@ -76,11 +81,15 @@ $('#animals').on('click', function () {
 $('#starWars').on('click', function () {
   images = starWars;
   $(this).addClass('clicked');
+  $('#body').addClass('starWars');
+  $('#body').removeClass('animals');
+  $('#body').removeClass('harry');
   $('#harry').removeClass('clicked');
   $('#animals').removeClass('clicked');
   theme = 'starWars';
   $(this).addClass('clicked');
 })
+
 
 //VOLVER A JUGAR
 
@@ -104,13 +113,13 @@ $('#btnPlayAgain').on('click', function () {
 
   $('.images').removeClass('backAndWithe');
 
+  $('.oneImageContainer').removeClass('animated');
+  $('.oneImageContainer').revoveClass('flip');
+
   isSelected = false;
 
   reset();
-
-  play();
 })
-
 
 // TABLERO AL INICIO
 
@@ -125,6 +134,16 @@ $('#letsPlay').on('click', function () {
     $('#nameRequired').removeClass('hidden');
     setTimeout(function () {
       $('#nameRequired').addClass('hidden');
+    }, 2000)
+  } else if (attempts == 0) {
+    $('#levelRequired').removeClass('hidden');
+    setTimeout(function () {
+      $('#levelRequired').addClass('hidden');
+    }, 2000)
+  } else if (theme == undefined) {
+    $('#themeRequired').removeClass('hidden');
+    setTimeout(function () {
+      $('#themeRequired').addClass('hidden');
     }, 2000)
   } else {
     isSelected = true;
@@ -143,6 +162,7 @@ $('#letsPlay').on('click', function () {
 
 easy.on('click', function () {
   level = 'FACIL';
+  console.log('f', level)
   $(this).addClass('clicked');
   medium.removeClass('clicked');
   expert.removeClass('clicked');
@@ -155,6 +175,7 @@ easy.on('click', function () {
 
 medium.on('click', function () {
   level = 'INTERMEDIO';
+  console.log('i', level)
   $(this).addClass('clicked');
   expert.removeClass('clicked');
   easy.removeClass('clicked');
@@ -167,6 +188,7 @@ medium.on('click', function () {
 
 expert.on('click', function () {
   level = 'EXPERTO';
+  console.log('e', level)
   $(this).addClass('clicked');
   medium.removeClass('clicked');
   easy.removeClass('clicked');
@@ -177,6 +199,8 @@ expert.on('click', function () {
   }
 
 })
+
+
 
 function fillAttempts(attempts) {
   $('#findAttempts').html(`Encontra todos los pares en menos de <span class="attemptsNumber"> ${attempts} </span> intentos`);
@@ -212,59 +236,102 @@ window.onload = function () {
 
 //SELECCCIONAR FICHAS IGUALES O NO
 
-function play() {
-  $('.images').on('click', function () {
-    var visible = $(this).attr('data-img');
-    $(this).attr('src', visible);
-    $(this).parent('.oneImageContainer').addClass('animated');
-    $(this).parent('.oneImageContainer').addClass('flip');
-    howManyClicks++;
-    if (howManyClicks === 1) {
-      piceOne = $(this).attr('data-img');
-      piceOneId = $(this).attr('id');
-    } else {
-      if (piceOneId !== $(this).attr('id')) {
-        piceTwo = $(this).attr('data-img');
-        piceTwoId = $(this).attr('id');
-        totalClicks++;
-        $('#attempts').html('Intentos: Nº ' + totalClicks);
-        if (howManyClicks == 2) {
-          setTimeout(function () {
-            $('.images').parent('.oneImageContainer').removeClass('animated');
-            $('.images').parent('.oneImageContainer').removeClass('flip');
-          }, 900)
-        }
-        if (piceOne !== piceTwo) {
-          setTimeout(function () {
-            piceOne = $(`#${piceOneId}`).attr('src', `images/cover/${theme}.jpg`);
-            piceTwo = $(`#${piceTwoId}`).attr('src', `images/cover/${theme}.jpg`);
-          }, 1000)
-        } else {
-          if (piceOneId !== piceTwoId) {
-            piceOne = $(`#${piceOneId}`).addClass('backAndWithe');
-            piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
-            $('#' + piceOneId).off('click');
-            $('#' + piceTwoId).off('click');
-            setTimeout(function () {
-              piceOne = $(`#${piceOneId}`).addClass('animated');
-              piceTwo = $(`#${piceTwoId}`).addClass('animated');
-              piceOne = $(`#${piceOneId}`).addClass('shake');
-              piceTwo = $(`#${piceTwoId}`).addClass('shake');
-            }, 500)
 
-            equalPices++
+
+function play() {
+  $('.images').off('click', '*');
+  $('.images').on('click', function () {
+    howManyClicks++;
+    console.log(howManyClicks)
+    if (howManyClicks < 3) {
+      var visible = $(this).attr('data-img');
+      $(this).attr('src', visible);
+      $(this).parent('.oneImageContainer').addClass('animated');
+      $(this).parent('.oneImageContainer').addClass('flip');
+      if (howManyClicks === 1) {
+        piceOne = $(this).attr('data-img');
+        piceOneId = $(this).attr('id');
+      } else {
+        if (piceOneId !== $(this).attr('id')) {
+          piceTwo = $(this).attr('data-img');
+          piceTwoId = $(this).attr('id');
+          totalClicks++;
+          $('#attempts').html('Intentos: Nº ' + totalClicks);
+          if (howManyClicks == 2) {
+            setTimeout(function () {
+              $('.oneImageContainer').removeClass('animated');
+              $('.oneImageContainer').removeClass('flip');
+            }, 900)
           }
+          if (piceOne !== piceTwo) {
+            setTimeout(function () {
+              piceOne = $(`#${piceOneId}`).attr('src', `images/cover/${theme}.jpg`);
+              piceTwo = $(`#${piceTwoId}`).attr('src', `images/cover/${theme}.jpg`);
+              howManyClicks = 0;
+            }, 1000)
+          } else {
+            if (piceOneId !== piceTwoId) {
+              piceOne = $(`#${piceOneId}`).addClass('backAndWithe');
+              piceTwo = $(`#${piceTwoId}`).addClass('backAndWithe');
+              $('#' + piceOneId).off('click');
+              $('#' + piceTwoId).off('click');
+              setTimeout(function () {
+                piceOne = $(`#${piceOneId}`).addClass('animated');
+                piceTwo = $(`#${piceTwoId}`).addClass('animated');
+                piceOne = $(`#${piceOneId}`).addClass('shake');
+                piceTwo = $(`#${piceTwoId}`).addClass('shake');
+                howManyClicks = 0;
+              }, 500)
+
+              equalPices++
+
+            } else {
+              howManyClicks = 0;
+            }
+          }
+        } else {
+          howManyClicks--;
         }
-        howManyClicks = 0;
       }
+      game();
     }
-    game();
   })
+}
+
+play();
+
+//RANKING
+
+function ranking () {  
+  $.ajax('http://localhost:3000/ranking' + '?level=' + level).done(function(data) {
+  console.log(data)
+  for (i = 0; i < data.length; i++) {
+    $('#ranking').append(`
+      <div class="row">
+        <div id="rankingName">
+          <p>${data[i].player}</p>
+        </div>  
+        <div id="rankingLevel">
+          <p>${data[i].level}</p>
+        </div>
+        <div id="rankingAttempts">
+          <p>${data[i].attempts}</p>
+        </div>
+      </div>
+    `)
+  }
+})
+}
+
+function winnerRanking () {
+  $.post('http://localhost:3000/newScore', { player: name, playerLevel: level, playerAttempts: totalClicks});
 
 }
 
 
-play();
+
+
+    
 
 //PERDER O GANAR
 
@@ -274,68 +341,28 @@ function game() {
       $('.message').html('Perdiste! 😢'); 1
       $('#gameOver').removeClass('hidden');
       $('.buttonDifficulty').prop('disabled', false);
+      ranking();
     } else if (totalClicks == 12 && attempts == 12) {
       $('#gameOver').removeClass('hidden');
       $('.message').html('Perdiste! 😢');
       $('.buttonDifficulty').prop('disabled', false);
+      ranking();
     } else if (totalClicks == 9 && attempts == 9) {
       $('#gameOver').removeClass('hidden');
       $('.message').html('Perdiste! 😢');
       $('.buttonDifficulty').prop('disabled', false);
+      ranking();
     }
   } else {
     if (equalPices === 6) {
+      winnerRanking();
       $('#gameOver').removeClass('hidden');
       $('.buttonDifficulty').prop('disabled', false);
       $('.message').html(`Ganaste 🎉 ! con ${totalClicks} intentos.`);
-
       ranking();
     }
   }
 }
 
 
-function ranking() {
-  if (localStorage.getItem('ranking') == null) {
-    score = [];
-  } else {
-    score = JSON.parse(localStorage.getItem('ranking'));
-  }
 
-  var ranking = {
-    rankingName: name,
-    rankingLevel: level,
-    rankingAttempts: totalClicks
-  }
-
-  score.unshift(ranking);
-
-  localStorage.setItem('ranking', JSON.stringify(score));
-
-  var ranking = localStorage.getItem('ranking');
-  ranking = JSON.parse(ranking);
-
-
-  if (ranking !== null) {
-    var max = 5;
-    if (ranking.length < 5) {
-      max = ranking.length
-    }
-    $('#ranking').html('')
-    for (i = 0; i < max; i++) {
-      $('#ranking').append(`
-        <div class="row">
-          <div id="rankingName">
-            <p>${ranking[i].rankingName}</p>
-          </div>  
-          <div id="rankingLevel">
-            <p>${ranking[i].rankingLevel}</p>
-          </div>
-          <div id="rankingAttempts">
-            <p>${ranking[i].rankingAttempts}</p>
-          </div>
-        </div>
-      `)
-    }
-  }
-}
